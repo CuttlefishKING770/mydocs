@@ -1,1 +1,14 @@
 site_name: LIN的笔记
+theme:
+  name: material
+
+# 下面这块就是控制导航栏的
+nav:
+  - markdown的使用方法: index.md
+  - 其他笔记:                  # 父级菜单
+      - Python学习: python_study.md 
+      - Mkdocs学习: mkdocs_study.md  
+markdown_extensions:
+   - admonition
+   - pymdownx.details
+   - pymdownx.superfences
