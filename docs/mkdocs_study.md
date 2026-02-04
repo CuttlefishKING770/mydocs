@@ -62,3 +62,21 @@ mkdocs gh-deploy
 
 
 ![更新网页的指令](images/更新网页.jpg)
+
+
+
+##  进阶玩法
+
+```mermaid
+graph LR
+  张三 -->|师徒| 李四
+  张三 -->|仇敌| 王五
+  王五 -->|暗恋| 赵六
+```
+    
+```mermaid
+graph TD
+    A[筑基] --> B[金丹]
+    B --> C[元婴]
+    B --> D[走火入魔]
+```
