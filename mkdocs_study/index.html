@@ -530,12 +530,12 @@
 <h2 id="1">1. 核心命令 (搭建篇)</h2>
 <ul>
 <li><strong>安装工具</strong>：
-<code>pip install mkdocs</code>
-<code>pip install mkdocs-material</code> （新uI）</li>
+<code>pip install mkdocs</code><br />
+<code>pip install mkdocs-material</code> （新uI）  </li>
 <li><strong>新建项目</strong>：</li>
-<li>选择一个文件夹，在地址栏输 CMD 打开黑框。</li>
+<li>选择一个文件夹，在地址栏输 CMD 打开黑框。  </li>
 <li>
-<p>输入：<code>mkdocs new  文件名  （或者在当前目录用</code>mkdocs new .`）</p>
+<p>输入：<code>mkdocs new  文件名  （或者在当前目录用</code>mkdocs new .`）  </p>
 </li>
 <li>
 <p><strong>启动预览 (本地)</strong>：</p>
@@ -547,8 +547,8 @@
 <h2 id="2">2. 如何修改内容 (装修篇)</h2>
 <ul>
 <li><strong>写文章</strong>：
-修改 <code>docs/index.md</code> 文件（记事本打开，写什么显示什么）。
-<em>如果要加新页面，就在 docs 里新建 .md 文件。</em></li>
+修改 <code>docs/index.md</code> 文件（记事本打开，写什么显示什么）。<br />
+<em>如果要加新页面，就在 docs 里新建 .md 文件。</em>  </li>
 <li><strong>改配置</strong>：
 修改 <code>mkdocs.yml</code> 文件。</li>
 <li>改名：找 <code>site_name</code>。</li>
@@ -569,9 +569,10 @@ mkdocs gh-deploy
 </code></pre>
 <ol>
 <li><strong>开启网页 (关键一步)</strong>：</li>
-<li>去 GitHub 仓库 -&gt; Settings -&gt; Pages。</li>
-<li>把 Branch 改成 <code>gh-pages</code>，点击 Save。</li>
-<li>等待 1-2 分钟，刷新页面。</li>
+<li><strong>开启网页 (关键一步)</strong>：
+    a. 去 GitHub 仓库 -&gt; <strong>Settings</strong> -&gt; <strong>Pages</strong>。<br />
+    b. 把 <strong>Branch</strong> 改成 <code>gh-pages</code>，点击 <strong>Save</strong>。<br />
+    c. 等待 1-2 分钟，刷新页面。  </li>
 </ol>
 <h2 id="4">4. 日常更新流程 (以后每天都看这里)</h2>
 <p><strong>以后写日记，只需要做这 3 步，不需要再 git init 了！</strong></p>
@@ -580,29 +581,36 @@ mkdocs gh-deploy
 <li><strong>发</strong>：在项目文件夹打开 CMD，输入这一句“发射命令”：</li>
 </ol>
 <pre><code class="language-bash">mkdocs gh-deploy
-
 </code></pre>
 <ol>
 <li><strong>看</strong>：等待黑框跑完，去浏览器刷新你的网址。</li>
 </ol>
 <h2 id="5">5. 常见报错急救包</h2>
 <ul>
-<li>**报错 1：<code>Config file 'mkdocs.yml' does not exist**</code></li>
-<li><strong>原因</strong>：你忘了进房间！</li>
+<li>
+<p>报错 1：Config file 'mkdocs.yml' does not exist</p>
+</li>
+<li>
+<p><strong>原因</strong>：你忘了进房间！</p>
+</li>
 <li>
 <p><strong>解决</strong>：输入 <code>cd 文件夹名</code> 进入目录，再操作。</p>
 </li>
 <li>
-<p>**报错 2：<code>No such command 'server'**</code></p>
+<p><strong>报错 2：No such command 'server'</strong>`</p>
 </li>
-<li><strong>原因</strong>：单词拼错了。</li>
+<li>
+<p><strong>原因</strong>：单词拼错了。</p>
+</li>
 <li>
 <p><strong>解决</strong>：是 <code>serve</code>，后面没有 r。</p>
 </li>
 <li>
-<p>**报错 3：<code>fatal: unable to access... port 443**</code></p>
+<p>报错 3：fatal: unable to access... port 443</p>
 </li>
-<li><strong>原因</strong>：网络超时（GitHub 经常这样）。</li>
+<li>
+<p><strong>原因</strong>：网络超时（GitHub 经常这样）。</p>
+</li>
 <li><strong>解决</strong>：</li>
 <li>按 <code>↑</code> 键调出刚才的命令，多试几次。</li>
 <li>
