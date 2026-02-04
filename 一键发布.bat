@@ -4,20 +4,26 @@ echo ==========================================
 echo       正在启动自动保存与发布程序...
 echo ==========================================
 
-:: 1. 先把源码保存到 GitHub (防止电脑坏了稿子丢了)
+:: 1. 备份源码 (如果有冲突先尝试拉取)
 echo [1/2] 正在备份写作原稿...
+git pull origin main
 git add .
-git commit -m "Auto-save: %date% %time%"
+git commit -m "Update: %date% %time%"
 git push
 
-:: 2. 再把网页发布出去
+:: 2. 强制发布网页 (修复 Error 128)
 echo.
-echo [2/2] 正在构建并发布网页...
-call mkdocs gh-deploy
+echo [2/2] 正在强制构建并发布网页...
+call mkdocs gh-deploy --force
 
 echo.
 echo ==========================================
-echo          🎉 全部搞定！网页已更新。
+if %errorlevel% neq 0 (
+    echo ❌ 发布失败！可能是网络问题。
+    echo 请检查 VPN 是否开启，或者稍后再试。
+) else (
+    echo 🎉 全部搞定！网页已强制更新。
+)
 echo ==========================================
 echo.
 pause
