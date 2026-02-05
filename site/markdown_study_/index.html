@@ -1,0 +1,654 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cuttlefishking770.github.io/mydocs/markdown_study_/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../mkdocs_study/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Markdown study - LIN个人笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="LIN个人笔记" class="md-header__button md-logo" aria-label="LIN个人笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LIN个人笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Markdown study 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Markdown study 
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mkdocs_study/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MkDocs 搭建与维护自查手册
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../python_study/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  OCR
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LIN个人笔记" class="md-nav__button md-logo" aria-label="LIN个人笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LIN个人笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown study 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 搭建与维护自查手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OCR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Markdown study </h1>
+
+<p>这是关于如何使用 Markdown的方法</p>
+<p># Markdown 使用教程 </p>
+<p>## 1. 标题 (控制字号大小)</p>
+<p>就像写大纲一样，用井号 “#” 的数量来决定层级。</p>
+<p>语法：<code>#</code> + 空格 + 文字  </p>
+<p>示列：  </p>
+<p>![标题示例](images/标题写法.jpg)  </p>
+<p>效果：</p>
+<p>![效果](images/渲染效果.jpg)</p>
+<p>## 2. 换行与段落 (这里我改成了二级标题)</p>
+<p>在 Markdown 里，直接按一下回车**不叫换行**，叫空格。</p>
+<p>### 🅰️ 想要分段 (段落之间有空隙)</p>
+<p>**操作**：按 **两次** 回车（中间空一行）。  </p>
+<p>**场景**：写小说时的自然分段。</p>
+<blockquote>
+<p>**效果演示**：</p>
+<p>这是第一段话。</p>
+<p>这是第二段话，你看，中间有一条缝。</p>
+</blockquote>
+<p>### 🅱️ 想要紧凑换行 (行与行挨着)</p>
+<p>**操作**：在上一行末尾敲 **两个空格**，再按回车。   </p>
+<p>**场景**：写诗、歌词、或者紧凑的列表。</p>
+<blockquote>
+<p>**效果演示**：</p>
+<p>这里的山路十八弯 (末尾有两个空格)  </p>
+<p>这里的水路九连环</p>
+</blockquote>
+<p>##  3. 代码块 (固定格式类似pdf)</p>
+<p>让你的命令和代码像程序员文档一样显示在“灰色方框”里，保留格式，不会乱跑。</p>
+<p>### 1. 单行代码 (穿插在文字里)  </p>
+<p>**语法**：用两个反引号 \` 把内容包起来。  </p>
+<p>**效果**：输入 <code>pip install</code> 就可以安装。</p>
+<p>### 2. 多行代码块 (一整段配置)</p>
+<p>**语法**：在首尾各写 **三个反引号**  </p>
+<div class="highlight"><pre><span></span><code><span class="sb">```bash</span>
+
+git<span class="w"> </span>init
+
+git<span class="w"> </span>add<span class="w"> </span>.
+
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;第一次提交&quot;</span>
+
+<span class="sb">```</span>
+</code></pre></div>
+<p>(注：反引号 ` 通常在键盘左上角 Esc 键的下面，一定要用**英文输入法**打) </p>
+<p>##  4. 特殊格式</p>
+<p>### 无序列表 (小圆点)</p>
+<p>语法：用减号 <code>-</code> 或星号 <code>\*</code> 加空格。</p>
+<p>- 记得买菜</p>
+<p>- 记得写日记</p>
+<p>### 有序列表 (数字)</p>
+<p>语法：直接写  <code>`1.`</code> 加空格。</p>
+<p>1. 第一步</p>
+<p>2. 第二步</p>
+<p>### 引用 (给自己留的话)</p>
+<p>如果你想对某段话做个高亮，或者引用别人的名言。</p>
+<p>语法：<code>&gt;</code> + 空格</p>
+<blockquote>
+<p>这是一个引用的样式</p>
+</blockquote>
+<p>##  5  引入图片</p>
+<p>a. 存放图片 (关键步骤)  </p>
+<p>* MkDocs 只能识别放在 docs 文件夹内的资源。建议你保持目录整洁，按以下结构存放：</p>
+<p>打开你的项目文件夹。    </p>
+<p>* 进入 docs 文件夹。 </p>
+<p>* 新建一个文件夹命名为 images（或 assets）。</p>
+<p>将你的图片（例如 photo.jpg）放入这个 docs/images 文件夹中。</p>
+<div class="highlight"><pre><span></span><code>!\[图片的描述文字](images/photo.jpg)
+</code></pre></div>
+<p>##  6. 强调 (加粗与斜体)</p>
+<p>写小说设定时，总有些关键词需要醒目一点。</p>
+<p>- **加粗**：用两个星号包裹。</p>
+<p>&nbsp; - 语法：<code>\*\*重点文字\*\*</code></p>
+<p>&nbsp; - 效果：**重点文字**</p>
+<p>- *斜体*：用一个星号包裹（通常用于内心独白或特殊术语）。</p>
+<p>&nbsp; - 语法：<code>\*内心独白\*</code></p>
+<p>&nbsp; - 效果：*内心独白*</p>
+<p>- <del>删除线</del>：用两个波浪号包裹（用于吐槽或废弃的旧设定）。</p>
+<p>&nbsp; - 语法：<code>~~旧设定~~</code></p>
+<p>&nbsp; - 效果：<del>旧设定</del></p>
+<p>## 7. 超链接 (跳转)</p>
+<p>MkDocs 的核心优势就是可以互相跳转。</p>
+<p>- **外部链接** (跳转到百度/谷歌)：  </p>
+<p>&nbsp; 语法：<code>\[名称](网址链接)</code> <code>\[百度一下](https://www.baidu.com)</code>  </p>
+<p>&nbsp; 效果：[百度一下](https://www.baidu.com)</p>
+<p>- **内部链接** (跳转到你自己的其他文档)：   </p>
+<p>&nbsp; 语法：<code>\[名称](文档名称)</code> <code>\[python学习跳转](python\_study.md)</code>   </p>
+<p>&nbsp; 效果：[python学习跳转](python_study.md)   </p>
+<p>&nbsp; *(注：括号里写你 docs 文件夹下的文件名，支持相对路径)*</p>
+<p>##  8. 表格 (二维表格)</p>
+<p>虽然 Markdown 的表格语法看起来有点麻烦，。</p>
+<p>语法结构：</p>
+<div class="highlight"><pre><span></span><code>| 角色名 | 门派 | 境界 |
+
+| :--- | :--- | :--- |
+
+| 张三 | 玄天宗 | 筑基期 |
+
+| 李四 | 散修 | 金丹期 |
+</code></pre></div>
+<p>语法效果：</p>
+<p>| 角色名 | 门派 | 境界 |</p>
+<p>| :--- | :--- | :--- |</p>
+<p>| 张三 | 玄天宗 | 筑基期 |</p>
+<p>| 李四 | 散修 | 金丹期 |</p>
+<p>*(注意：第二行的 <code>| :--- |</code> 是必须的，用来分割表头)*</p>
+<p>##  9. 提示块 / Admonitions (MkDocs 的魔法 ✨)</p>
+<p>这是 MkDocs 主题（Material Theme）最漂亮的功能，能生成带颜色和图标的提示框，非常适合写“注意事项”或“备注”。</p>
+<p>语法：(三个感叹号 + 空格 + 类型)</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+</div>
+<p>&nbsp;   这里是备注的内容，前面必须缩进（按Tab键或4个空格）。</p>
+<p>&nbsp;   如果不缩进，框框就会断掉，变成普通文字。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+</div>
+<p>&nbsp;   这是一个警告框，颜色通常是黄色的。</p>
+<p>*(常用类型还有：<code>info</code> 蓝色, <code>success</code> 绿色, <code>tip</code> 青色, <code>failure</code> 红色)*</p>
+<div class="highlight"><pre><span></span><code>MkDocs 默认不开启这个“魔法”功能，你需要去“总控室” mkdocs.yml 里手动把开关打开。
+
+请按照以下步骤操作：
+
+1\. 打开 mkdocs.yml 文件
+
+找到你项目根目录下的 mkdocs.yml 文件（就是你设置网站名字的那个文件）。
+
+2\. 粘贴配置代码
+
+你需要添加一个 markdown\_extensions 模块。请把下面这段代码完整复制，粘贴到 mkdocs.yml 的最末尾：
+
+
+
+markdown\_extensions:
+
+&amp;nbsp; - admonition
+
+&amp;nbsp; - pymdownx.details
+
+&amp;nbsp; - pymdownx.superfences
+
+
+
+3\. ⚠️ 重要：重启服务
+
+修改配置文件（mkdocs.yml）后，正在运行的预览通常不会自动更新配置。
+
+在你的终端/黑框框里，按 Ctrl + C 停止当前的运行。
+
+重新输入 mkdocs serve 并回车。
+
+再次刷新你的网页，那个漂亮的方框应该就出现了！
+
+简单解释下加的那三行是干嘛的：
+
+admonition: 开启 !!! 这种提示块语法的核心功能。
+
+pymdownx.details: 让你可以使用可折叠的提示块（比如 ??? note &quot;点击展开&quot;）。
+
+pymdownx.superfences: 这是一个增强功能，防止复杂的代码块把你的提示框“撑爆”，建议一并加上
+
+防止以后出错
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "navigation.tabs", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
