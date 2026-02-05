@@ -621,10 +621,88 @@
   <a href="#10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10 代码框⬆️显示 语言
+        10. 代码框高级显示 (顶部标题栏)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="10. 代码框高级显示 (顶部标题栏)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🅰️ 核心语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🅱️ 更多场景示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🅱️ 更多场景示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 1: Python 脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 2: Markdown 文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 3: 终端命令 (Bash)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 注意事项 (配置检查)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -904,10 +982,88 @@
   <a href="#10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10 代码框⬆️显示 语言
+        10. 代码框高级显示 (顶部标题栏)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="10. 代码框高级显示 (顶部标题栏)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🅰️ 核心语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🅱️ 更多场景示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🅱️ 更多场景示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 1: Python 脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 2: Markdown 文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 3: 终端命令 (Bash)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 注意事项 (配置检查)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1098,44 +1254,63 @@ git commit -m &quot;第一次提交&quot;
 <li>重新输入 <code>mkdocs serve</code> 并回车。</li>
 <li>再次刷新你的网页，那个漂亮的方框应该就出现了！</li>
 </ol>
-<h2 id="10">10 代码框⬆️显示 语言</h2>
-<p>代码块顶部会出现一个“标题栏”，看起来像是一个独立的文件窗口。
-语法： 在三个反引号后面写语言，然后空格，写 title="标题内容"。
-Markdown
+<h2 id="10">10. 代码框高级显示 (顶部标题栏)</h2>
+<p>让代码块顶部出现一个“文件标题栏”，看起来像是一个独立的文件窗口，非常专业。</p>
+<h3 id="_7">🅰️ 核心语法</h3>
+<p><strong>语法规则</strong>：在三个反引号后面写 <code>语言名称</code>，然后空格，写 <code>title="标题内容"</code>。</p>
+<p><strong>1. 语法 (你应该这样写):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="sb">```python</span><span class="w"> </span>title=&quot;main.py&quot;
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<span class="sb">```</span>
+</code></pre></div>
+<p><strong>2. 效果 (网页上会这样显示):</strong></p>
 <div class="highlight"><span class="filename">main.py</span><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
-效果： 你会看到一个代码框，左上角或右上角写着 main.py，并且代码会有 Python 的颜色高亮。</p>
-<p>方式二：仅指定语言 (高亮颜色)
-如果你只是写 python 而不加 title，它通常只会给代码上色，而不会在顶部显式地写出“Python”这几个字（除非你装了特定的显示插件）。</p>
-<p>语法：</p>
-<p>Markdown
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-</code></pre></div>
-💡 综合示例 (你可以直接复制去试试)
-请把下面这段代码复制到你的 Markdown 文件里预览一下：</p>
-<p>Markdown</p>
-<h1 id="_7">代码块显示测试</h1>
-<h3 id="1-python">1. 带标题的 Python 代码 (最常用)</h3>
+<hr />
+<h3 id="_8">🅱️ 更多场景示例</h3>
+<h4 id="1-python">示例 1: Python 脚本</h4>
+<p><strong>语法:</strong>
+<div class="highlight"><pre><span></span><code><span class="sb">```python</span><span class="w"> </span>title=&quot;爬虫脚本.py&quot;
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="sb">```</span>
+</code></pre></div></p>
+<p><strong>效果:</strong>
 <div class="highlight"><span class="filename">爬虫脚本.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-</code></pre></div>
-<h3 id="2-markdown">2. 带标题的 Markdown 代码</h3>
+</code></pre></div></p>
+<h4 id="2-markdown">示例 2: Markdown 文档</h4>
+<p><strong>语法:</strong>
+<div class="highlight"><pre><span></span><code><span class="sb">```markdown</span><span class="w"> </span>title=&quot;示例文档.md&quot;
+<span class="gh"># 这是一个标题</span>
+这里是正文内容...
+<span class="sb">```</span>
+</code></pre></div></p>
+<p><strong>效果:</strong>
 <div class="highlight"><span class="filename">示例文档.md</span><pre><span></span><code><span class="gh"># 这是一个标题</span>
 这里是正文内容...
+</code></pre></div></p>
+<h4 id="3-bash">示例 3: 终端命令 (Bash)</h4>
+<p><strong>语法:</strong>
+<div class="highlight"><pre><span></span><code><span class="sb">```bash</span><span class="w"> </span>title=&quot;安装命令&quot;
+pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+<span class="sb">```</span>
+</code></pre></div></p>
+<p><strong>效果:</strong>
+<div class="highlight"><span class="filename">安装命令</span><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+</code></pre></div></p>
+<hr />
+<h3 id="_9">⚠️ 注意事项 (配置检查)</h3>
+<p>要让 <code>title="..."</code> 这个漂亮的标题栏生效，请确保你的 <code>mkdocs.yml</code> 里面已经开启了 <code>superfences</code> 插件：</p>
+<div class="highlight"><span class="filename">mkdocs.yml</span><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w">  </span><span class="c1"># ✅ 核心：支持高级代码框和标题栏</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span><span class="w">   </span><span class="c1"># ✅ 上色：代码高亮</span>
+<span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
-<h3 id="3-bash">3. 带标题的 Bash (终端命令)</h3>
-<p><div class="highlight"><span class="filename">安装命令</span><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
-</code></pre></div>
-⚠️ 注意事项
-要让 title="..." 这个功能生效并显示得漂亮，确保你的 mkdocs.yml </p>
-<p>YAML
-markdown_extensions:
-  - pymdownx.superfences  # 这个是核心，它支持这种高级显示
-  - pymdownx.highlight:   # 这个负责上色
-      anchor_linenums: true
-(之前给你的配置里已经包含了 superfences，所以你应该直接用上面的语法就能看到效果了！)</p>
 
 
 
