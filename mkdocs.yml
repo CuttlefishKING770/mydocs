@@ -28,23 +28,21 @@ nav:
 
 # 扩展插件配置
 markdown_extensions:
-  - admonition          # 提示块
-  - pymdownx.details    # 折叠详情
-  
-  # 👇👇👇 修复核心：配置 Mermaid 流程图支持 👇👇👇
-  - pymdownx.superfences:
+  - admonition          # 提示块 !!! note
+  - pymdownx.details    # 折叠详情 ???
+  - pymdownx.tilde      # 删除线 ~~
+  - pymdownx.tasklist   # 任务列表 - [ ]
+  - pymdownx.snippets   # 导入代码
+  - pymdownx.tabbed:    # 标签页
+      alternate_style: true
+
+  # 👇👇👇 重点修改这里：合并了 superfences 和 highlight 👇👇👇
+  - pymdownx.highlight:
+      anchor_linenums: true      # 让行号可以被链接
+      
+  - pymdownx.superfences:        # 既支持高级代码框，也支持流程图
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  # 👆👆👆 修复结束 👆👆👆
-  
-  - pymdownx.tilde      # 删除线
-  - pymdownx.tasklist   # 任务列表
-  - pymdownx.snippets   # 允许导入代码
-  - pymdownx.tabbed:    # 标签页功能
-      alternate_style: true
-
-# 引入外部 JS 用于渲染流程图
-extra_javascript:
-  - https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js
+  # 👆👆👆 修改结束 👆👆👆
