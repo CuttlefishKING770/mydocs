@@ -1,25 +1,33 @@
-site_name: 我的个人笔记  # 你可以改成你想要的名字
+site_name: LIN个人笔记
 site_url: https://cuttlefishking770.github.io/mydocs/
 
 theme:
   name: material
-  language: zh  # 设置语言为中文
+  language: zh # 设置语言为中文
   features:
-    - navigation.top   #哪怕网页很长，右下角也会有个“回到顶部”的按钮
-    - navigation.tabs  # 顶部的导航栏样式
-    - toc.follow       # 右侧目录自动跟随滚动
+    - navigation.top   # 顶部导航
+    - navigation.tabs  # 顶部标签页样式
+    - toc.follow       # 侧边目录自动跟随
 
-# 这里是关键的扩展功能配置
+# 扩展插件配置
 markdown_extensions:
-  - admonition          # 提示块 (!!! note)
-  - pymdownx.details    # 折叠详情 (???)
-  - pymdownx.superfences # 强力代码块（支持画图）
-  - pymdownx.tilde      # 删除线 (~~)
-  - pymdownx.tasklist   # 任务列表 (- [ ])
-  - pymdownx.snippets   # 允许导入代码文件
+  - admonition          # 提示块
+  - pymdownx.details    # 折叠详情
+  
+  # 👇👇👇 修复核心：配置 Mermaid 流程图支持 👇👇👇
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # 👆👆👆 修复结束 👆👆👆
+  
+  - pymdownx.tilde      # 删除线
+  - pymdownx.tasklist   # 任务列表
+  - pymdownx.snippets   # 允许导入代码
   - pymdownx.tabbed:    # 标签页功能
       alternate_style: true
 
-# 这一步是让 mermaid 画图生效的
+# 引入外部 JS 用于渲染流程图
 extra_javascript:
   - https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js
