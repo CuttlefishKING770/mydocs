@@ -22,7 +22,7 @@ theme:
 nav:
   - 首页: index.md
   - python OCR相关学习: python_study.md
-  - markdown格式: markdown_study_.md
+  - markdown格式: markdown_study.md
   - makdoce学习: mkdocs_study.md
 
 
