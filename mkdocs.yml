@@ -9,16 +9,21 @@ theme:
     - navigation.tabs  # 顶部标签页样式
     - toc.follow       # 侧边目录自动跟随
     - header.autohide
-    
+
   # 🎨 颜色配置
   palette:
-    primary: purple 
-    accent: teal
+    primary: blue-grey
+    accent: red
     
   # 🖼️ 图标配置
   icon:
     logo: material/robot  # 变成机器人图标
 
+nav:
+  - 首页: index.md
+  - python OCR相关学习: python_study.md
+  - markdown格式: markdown_study_.md
+  - makdoce学习: mkdocs_study.md
 
 
 # 扩展插件配置
