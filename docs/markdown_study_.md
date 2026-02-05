@@ -181,31 +181,45 @@ markdown_extensions:
 3. 再次刷新你的网页，那个漂亮的方框应该就出现了！
 
 
-## 10 代码框⬆️显示 语言
-代码块顶部会出现一个“标题栏”，看起来像是一个独立的文件窗口。
-语法： 在三个反引号后面写语言，然后空格，写 title="标题内容"。
-Markdown
+## 10. 代码框高级显示 (顶部标题栏)
+
+让代码块顶部出现一个“文件标题栏”，看起来像是一个独立的文件窗口，非常专业。
+
+### 🅰️ 核心语法
+
+**语法规则**：在三个反引号后面写 `语言名称`，然后空格，写 `title="标题内容"`。
+
+**1. 语法 (你应该这样写):**
+
+````markdown
 ```python title="main.py"
 print("Hello World")
 ```
-效果： 你会看到一个代码框，左上角或右上角写着 main.py，并且代码会有 Python 的颜色高亮。
+````
 
-方式二：仅指定语言 (高亮颜色)
-如果你只是写 python 而不加 title，它通常只会给代码上色，而不会在顶部显式地写出“Python”这几个字（除非你装了特定的显示插件）。
+**2. 效果 (网页上会这样显示):**
 
-语法：
-
-Markdown
-```python
+```python title="main.py"
 print("Hello World")
 ```
-💡 综合示例 (你可以直接复制去试试)
-请把下面这段代码复制到你的 Markdown 文件里预览一下：
 
-Markdown
-# 代码块显示测试
+---
 
-### 1. 带标题的 Python 代码 (最常用)
+### 🅱️ 更多场景示例
+
+#### 示例 1: Python 脚本
+
+**语法:**
+````markdown
+```python title="爬虫脚本.py"
+import requests
+
+def get_html(url):
+    return requests.get(url).text
+```
+````
+
+**效果:**
 ```python title="爬虫脚本.py"
 import requests
 
@@ -213,22 +227,45 @@ def get_html(url):
     return requests.get(url).text
 ```
 
-### 2. 带标题的 Markdown 代码
+#### 示例 2: Markdown 文档
+
+**语法:**
+````markdown
+```markdown title="示例文档.md"
+# 这是一个标题
+这里是正文内容...
+```
+````
+
+**效果:**
 ```markdown title="示例文档.md"
 # 这是一个标题
 这里是正文内容...
 ```
 
-### 3. 带标题的 Bash (终端命令)
+#### 示例 3: 终端命令 (Bash)
+
+**语法:**
+````markdown
 ```bash title="安装命令"
 pip install mkdocs-material
 ```
-⚠️ 注意事项
-要让 title="..." 这个功能生效并显示得漂亮，确保你的 mkdocs.yml 
+````
 
-YAML
+**效果:**
+```bash title="安装命令"
+pip install mkdocs-material
+```
+
+---
+
+### ⚠️ 注意事项 (配置检查)
+
+要让 `title="..."` 这个漂亮的标题栏生效，请确保你的 `mkdocs.yml` 里面已经开启了 `superfences` 插件：
+
+```yaml title="mkdocs.yml"
 markdown_extensions:
-  - pymdownx.superfences  # 这个是核心，它支持这种高级显示
-  - pymdownx.highlight:   # 这个负责上色
+  - pymdownx.superfences  # ✅ 核心：支持高级代码框和标题栏
+  - pymdownx.highlight:   # ✅ 上色：代码高亮
       anchor_linenums: true
-(之前给你的配置里已经包含了 superfences，所以你应该直接用上面的语法就能看到效果了！)
+```
