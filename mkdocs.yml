@@ -1,48 +1,83 @@
-site_name: LIN个人笔记
-site_url: https://cuttlefishking770.github.io/mydocs/
+# ==========================================
+# 1. 基础信息设置 (必填)
+# ==========================================
+site_name: LIN个人笔记              # 浏览器标签页和左上角显示的网站名字
+site_url: https://cuttlefishking770.github.io/mydocs/  
+# ↑ 你的网站发布后的网址。MkDocs 需要用它来生成正确的链接跳转，
+#   如果不填或填错，可能会导致 404 错误。
 
+# ==========================================
+# 2. 主题样式设置 (颜值担当)
+# ==========================================
 theme:
-  name: material
-  language: zh # 设置语言为中文
+  name: material                   # 指定使用 "Material" 这个第三方主题
+  language: zh                     # 界面语言改成中文 (比如搜索框会显示"搜索"而不是"Search")
+  
+  # --- 功能开关 (Features) ---
   features:
-    - navigation.top   # 顶部导航
-    - navigation.tabs  # 顶部标签页样式
-    - toc.follow       # 侧边目录自动跟随
-    - header.autohide
+    - navigation.top               # 【回到顶部】网页长的时候，右下角会出现一个小箭头，点一下回顶部
+    - navigation.tabs              # 【顶部导航条】把左侧的菜单挪到网页最上方，类似 App 的标签页，适合分类多的时候
+    - toc.follow                   # 【目录跟随】右侧的小目录会随着你滚动鼠标自动高亮当前看到的位置
+    - header.autohide              # 【自动隐藏顶栏】往下滚动阅读时，顶部的蓝条会自动收起来，给你更大的阅读视野
 
-  # 🎨 颜色配置
+  # --- 颜色调色盘 (Palette) ---
   palette:
-    primary: blue-grey
-    accent: red
-    
-  # 🖼️ 图标配置
+    primary: blue-grey             # 【主色调】网页顶部横条和左侧边栏的颜色
+                                   # 可选值: indigo, red, pink, purple, teal, green, black, white 等
+    accent: red                    # 【强调色】链接、按钮、鼠标悬停时的颜色
+
+  # --- 图标设置 (Icon) ---
   icon:
-    logo: material/robot  # 变成机器人图标
+    logo: material/robot           # 【网站Logo】左上角的图标。
+                                   # material/robot 是主题自带的。如果要用自己的图，填 assets/logo.png
 
+# ==========================================
+# 3. 导航菜单 (Nav)
+# ==========================================
+# 决定了网页菜单栏显示什么，以及顺序。
+# 格式为 -> 显示在网页上的中文名 : docs文件夹里真实的文件名
 nav:
-  - 首页: index.md
-  - python OCR相关学习: python_study.md
-  - markdown格式: markdown_study.md
-  - makdoce学习: mkdocs_study.md
+  - 首页: index.md                 # 对应 docs/index.md
+  - Python OCR相关学习: python_study.md
+  - Markdown格式: markdown_study.md
+  - MkDocs学习: mkdocs_study.md    # 哪怕文件名拼错了(makdoce)，这里改对就行
 
-
-# 扩展插件配置
+# ==========================================
+# 4. Markdown 语法增强 (插件区)
+# ==========================================
+# 这里开启各种“魔法”功能，比如提示块、流程图、代码高亮
 markdown_extensions:
-  - admonition          # 提示块 !!! note
-  - pymdownx.details    # 折叠详情 ???
-  - pymdownx.tilde      # 删除线 ~~
-  - pymdownx.tasklist   # 任务列表 - [ ]
-  - pymdownx.snippets   # 导入代码
-  - pymdownx.tabbed:    # 标签页
-      alternate_style: true
+  # --- 基础增强 ---
+  - admonition                     # 开启提示块功能 (语法: !!! note "标题")
+  - pymdownx.details               # 开启折叠块功能 (语法: ??? note "点击展开")
+  - pymdownx.tilde                 # 开启删除线 (语法: ~~文字~~)
+  - pymdownx.tasklist              # 开启任务列表 (语法: - [x] 已完成)
+  - pymdownx.snippets              # 允许你在文章里直接导入另一个文件的代码，适合长代码管理
 
-  # 👇👇👇 重点修改这里：合并了 superfences 和 highlight 👇👇👇
+  # --- 标签页增强 ---
+  - pymdownx.tabbed:               # 开启内容标签页 (同一个框里切换 Python/C++ 代码)
+      alternate_style: true        # 使用更现代的样式
+
+  # --- 代码高亮 (Highlight) ---
   - pymdownx.highlight:
-      anchor_linenums: true      # 让行号可以被链接
-      
-  - pymdownx.superfences:        # 既支持高级代码框，也支持流程图
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  # 👆👆👆 修改结束 👆👆👆
+      anchor_linenums: true        # 让代码的行号可以被点击和分享 (比如发给别人主要看第10行)
+
+  # --- 超级围栏 (Superfences) - 核心插件 ---
+  # 这个插件非常关键！它做了两件事：
+  # 1. 允许你在列表、引用块里嵌套写代码块
+  # 2. 它是画流程图 (Mermaid) 的基础
+  - pymdownx.superfences:
+      custom_fences:               # 自定义围栏：告诉 MkDocs 怎么处理特殊代码块
+        - name: mermaid            # 如果代码块写的是 ```mermaid
+          class: mermaid           # 给它加上 class="mermaid" 标签
+          format: !!python/name:pymdownx.superfences.fence_code_format # 用 Python 脚本处理它
+
+# ==========================================
+# 5. 外部脚本 (Extra JS) - 必须项！
+# ==========================================
+# MkDocs 本身不懂怎么画图，它需要引入浏览器端的 JavaScript 库来画。
+extra_javascript:
+  # 从 CDN 网络加载 Mermaid 画图库。
+  # 如果不加这一行，你的流程图代码只会被当成普通文字显示，或者显示 undefined。
+  - [https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js](https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js) 
+

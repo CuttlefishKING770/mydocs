@@ -1117,10 +1117,10 @@
 **效果**：输入</code>pip install` 就可以安装。</p>
 <h3 id="2_1">2. 多行代码块 (一整段配置)</h3>
 <p><strong>语法</strong>：在首尾各写 <strong>三个反引号</strong></p>
-<p><div class="highlight"><pre><span></span><code>bash
-git init
-git add .
-git commit -m &quot;第一次提交&quot;
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git init
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git add .
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git commit -m &quot;第一次提交&quot;
 </code></pre></div>
 (注：反引号 ` 通常在键盘左上角 Esc 键的下面，一定要用<strong>英文输入法</strong>打)</p>
 <h2 id="4">4. 特殊格式</h2>
@@ -1151,7 +1151,7 @@ git commit -m &quot;第一次提交&quot;
 <li>新建一个文件夹命名为 <code>images</code>（或 <code>assets</code>）。</li>
 <li>将你的图片（例如 <code>photo.jpg</code>）放入这个 <code>docs/images</code> 文件夹中。</li>
 </ol>
-<div class="highlight"><pre><span></span><code>![<span class="nt">图片的描述文字</span>](<span class="na">images/photo.jpg</span>)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>![<span class="nt">图片的描述文字</span>](<span class="na">images/photo.jpg</span>)
 </code></pre></div>
 <h2 id="6">6. 强调 (加粗与斜体)</h2>
 <p>写小说设定时，总有些关键词需要醒目一点。</p>
@@ -1194,10 +1194,10 @@ git commit -m &quot;第一次提交&quot;
 <h2 id="8">8. 表格 (二维表格)</h2>
 <p>虽然 Markdown 的表格语法看起来有点麻烦。</p>
 <p><strong>语法结构：</strong></p>
-<div class="highlight"><pre><span></span><code>| 角色名 | 门派 | 境界 |
-| :--- | :--- | :--- |
-| 张三 | 玄天宗 | 筑基期 |
-| 李四 | 散修 | 金丹期 |
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>| 角色名 | 门派 | 境界 |
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>| :--- | :--- | :--- |
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>| 张三 | 玄天宗 | 筑基期 |
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>| 李四 | 散修 | 金丹期 |
 </code></pre></div>
 <p><strong>语法效果：</strong></p>
 <table>
@@ -1242,10 +1242,10 @@ git commit -m &quot;第一次提交&quot;
 找到你项目根目录下的 <code>mkdocs.yml</code> 文件。</p>
 <p><strong>2. 粘贴配置代码</strong>
 你需要添加一个 <code>markdown_extensions</code> 模块。请把下面这段代码完整复制，粘贴到 <code>mkdocs.yml</code> 的最末尾：</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
 </code></pre></div>
 <strong>3. ⚠️ 重要：重启服务</strong>
 修改配置文件（<code>mkdocs.yml</code>）后，正在运行的预览通常不会自动更新配置。</p>
@@ -1259,57 +1259,57 @@ git commit -m &quot;第一次提交&quot;
 <h3 id="_7">🅰️ 核心语法</h3>
 <p><strong>语法规则</strong>：在三个反引号后面写 <code>语言名称</code>，然后空格，写 <code>title="标题内容"</code>。</p>
 <p><strong>1. 语法 (你应该这样写):</strong></p>
-<div class="highlight"><pre><span></span><code><span class="sb">```python</span><span class="w"> </span>title=&quot;main.py&quot;
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
-<span class="sb">```</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="sb">```python</span><span class="w"> </span>title=&quot;main.py&quot;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="sb">```</span>
 </code></pre></div>
 <p><strong>2. 效果 (网页上会这样显示):</strong></p>
-<div class="highlight"><span class="filename">main.py</span><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<div class="highlight"><span class="filename">main.py</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre></div>
 <hr />
 <h3 id="_8">🅱️ 更多场景示例</h3>
 <h4 id="1-python">示例 1: Python 脚本</h4>
 <p><strong>语法:</strong>
-<div class="highlight"><pre><span></span><code><span class="sb">```python</span><span class="w"> </span>title=&quot;爬虫脚本.py&quot;
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<span class="sb">```</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="sb">```python</span><span class="w"> </span>title=&quot;爬虫脚本.py&quot;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sb">```</span>
 </code></pre></div></p>
 <p><strong>效果:</strong>
-<div class="highlight"><span class="filename">爬虫脚本.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<div class="highlight"><span class="filename">爬虫脚本.py</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 </code></pre></div></p>
 <h4 id="2-markdown">示例 2: Markdown 文档</h4>
 <p><strong>语法:</strong>
-<div class="highlight"><pre><span></span><code><span class="sb">```markdown</span><span class="w"> </span>title=&quot;示例文档.md&quot;
-<span class="gh"># 这是一个标题</span>
-这里是正文内容...
-<span class="sb">```</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="sb">```markdown</span><span class="w"> </span>title=&quot;示例文档.md&quot;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gh"># 这是一个标题</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>这里是正文内容...
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sb">```</span>
 </code></pre></div></p>
 <p><strong>效果:</strong>
-<div class="highlight"><span class="filename">示例文档.md</span><pre><span></span><code><span class="gh"># 这是一个标题</span>
-这里是正文内容...
+<div class="highlight"><span class="filename">示例文档.md</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gh"># 这是一个标题</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>这里是正文内容...
 </code></pre></div></p>
 <h4 id="3-bash">示例 3: 终端命令 (Bash)</h4>
 <p><strong>语法:</strong>
-<div class="highlight"><pre><span></span><code><span class="sb">```bash</span><span class="w"> </span>title=&quot;安装命令&quot;
-pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
-<span class="sb">```</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="sb">```bash</span><span class="w"> </span>title=&quot;安装命令&quot;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="sb">```</span>
 </code></pre></div></p>
 <p><strong>效果:</strong>
-<div class="highlight"><span class="filename">安装命令</span><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+<div class="highlight"><span class="filename">安装命令</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
 </code></pre></div></p>
 <hr />
 <h3 id="_9">⚠️ 注意事项 (配置检查)</h3>
 <p>要让 <code>title="..."</code> 这个漂亮的标题栏生效，请确保你的 <code>mkdocs.yml</code> 里面已经开启了 <code>superfences</code> 插件：</p>
-<div class="highlight"><span class="filename">mkdocs.yml</span><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w">  </span><span class="c1"># ✅ 核心：支持高级代码框和标题栏</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span><span class="w">   </span><span class="c1"># ✅ 上色：代码高亮</span>
-<span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<div class="highlight"><span class="filename">mkdocs.yml</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w">  </span><span class="c1"># ✅ 核心：支持高级代码框和标题栏</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span><span class="w">   </span><span class="c1"># ✅ 上色：代码高亮</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">      </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 
 
@@ -1370,8 +1370,6 @@ pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
-      
-        <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
       
     
   </body>
