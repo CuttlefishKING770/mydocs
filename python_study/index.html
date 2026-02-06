@@ -388,18 +388,7 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tesseractopencv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        学习中最常用的“第一步”是调用成熟的开源引擎（如 Tesseract）并配合图像处理（OpenCV）。
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="学习中最常用的“第一步”是调用成熟的开源引擎（如 Tesseract）并配合图像处理（OpenCV）。">
+    <nav class="md-nav" aria-label="1.OCR (Optical Character Recognition，光学字符识别)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -566,6 +555,28 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-paddleocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 核心实战：唤醒 PaddleOCR 引擎
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-ocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 数据解剖：理解 OCR 的返回值
+      
+    </span>
+  </a>
   
 </li>
         
@@ -676,18 +687,7 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tesseractopencv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        学习中最常用的“第一步”是调用成熟的开源引擎（如 Tesseract）并配合图像处理（OpenCV）。
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="学习中最常用的“第一步”是调用成熟的开源引擎（如 Tesseract）并配合图像处理（OpenCV）。">
+    <nav class="md-nav" aria-label="1.OCR (Optical Character Recognition，光学字符识别)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -857,6 +857,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#15-paddleocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 核心实战：唤醒 PaddleOCR 引擎
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-ocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 数据解剖：理解 OCR 的返回值
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -886,7 +908,9 @@
 
 <h1 id="python">python 学习模块</h1>
 <h2 id="1ocr-optical-character-recognition">1.OCR (Optical Character Recognition，光学字符识别)</h2>
-<h2 id="tesseractopencv">学习中最常用的“第一步”是调用成熟的<strong>开源引擎</strong>（如 Tesseract）并配合<strong>图像处理</strong>（OpenCV）。</h2>
+<div class="highlight"><pre><span></span><code>学习中最常用的“第一步”是调用成熟的**开源引擎**（如 Tesseract）并配合**图像处理**（OpenCV）。
+</code></pre></div>
+<hr />
 <h3 id="11-ocr">1.1 核心逻辑：OCR 的流水线</h3>
 <p>OCR 不是一个简单的函数，它是一套流程：<br />
 <strong>输入</strong> ：一张图片。  <br />
@@ -894,7 +918,6 @@
 <strong>识别</strong>：调用 OCR 引擎把像素变成文字。 
 <strong>输出</strong>：文本字符串。  </p>
 <hr />
-<p>。</p>
 <h3 id="12-vs">1.2 工具选型：教具 vs 武器</h3>
 <p>Tesseract (Google)：</p>
 <p>特点：老牌、轻量，依赖传统的像素比对。<br />
@@ -923,33 +946,32 @@
 <p><strong>核心目标</strong>：实现 <code>OCR 读取图片</code> -&gt; <code>正则提取关键信息</code> -&gt; <code>文件改名</code> 的自动化闭环。</p>
 <h4 id="1_1">1. 关键设置 (系统熔断开关)</h4>
 <p><strong>注意</strong>：在 <code>import</code> 任何深度学习库（如 PaddleOCR）之前，必须<strong>优先</strong>执行以下代码。防止 Intel 的 MKLDNN 加速库与 OCR 引擎发生冲突，导致程序直接崩溃 (Flash 闪退)。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight"><span class="filename">python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>import<span class="w"> </span>os
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 1. 强制使用 CPU 模式，且彻底关闭 Intel 加速器</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FLAGS_use_mkldnn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FLAGS_enable_mkldnn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>os.environ<span class="o">[</span><span class="s2">&quot;FLAGS_use_mkldnn&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>os.environ<span class="o">[</span><span class="s2">&quot;FLAGS_enable_mkldnn&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 2. 禁用 GPU (如果是服务器环境不想占显存)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> 
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>os.environ<span class="o">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span> <span class="c1"># 导入正则库</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>import<span class="w"> </span>re<span class="w"> </span><span class="c1"># 导入正则库</span>
 </code></pre></div>
 <h4 id="2-regex">2 数据提取 (Regex 正则策略)</h4>
 <p>OCR 识别出的原始文本通常包含杂音，我们需要针对不同场景定制“筛子”：</p>
 <p>场景 A (变长编码)：如资产编号。r'\d{12,}' (连续 12 位以上)</p>
 <p>场景 B (定长编码)：如邮编。r'\d{6}' (精准 6 位)</p>
-<p>场景 C (特定规则)：如手机号。r'1\d{10}' (1 开头后跟 10 位)<br />
-A
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;联系电话: 13800138000 (内部)&quot;</span>
+<p>场景 C (特定规则)：如手机号。r'1\d{10}' (1 开头后跟 10 位)  </p>
+<div class="highlight"><span class="filename">python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>text = &quot;联系电话: 13800138000 (内部)&quot;
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 场景 D：提取手机号</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;1\d</span><span class="si">{10}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a># 场景 D：提取手机号
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>match = re.search(r&#39;1\d{10}&#39;, text)
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;找到手机号: </span><span class="si">{</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;未找到匹配项&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>if match:
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    print(f&quot;找到手机号: {match.group()}&quot;)
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>else:
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    print(&quot;未找到匹配项&quot;)
+</code></pre></div>
 <h4 id="3_1">3. 数据清洗 (多维手段)</h4>
 <p>OCR 的结果往往包含误读字符、多余换行或混乱的标点。我们根据脏数据的程度，选择不同的清洗策略。</p>
 <h5 id="31-string">3.1 基础物理清洗 (String 原生方法)</h5>
@@ -959,7 +981,7 @@ A
 <li><code>replace()</code>: 简单的定点替换（比如把中文冒号换成英文）。</li>
 <li><code>split()</code>: 掐头去尾，只取中间。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;  型号：Dell-7000 </span><span class="se">\n</span><span class="s2">&quot;</span>
+<div class="highlight"><span class="filename">清洗</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;  型号：Dell-7000 </span><span class="se">\n</span><span class="s2">&quot;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 1. 去除首尾空白 (常用起手式)</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">clean_s</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> 
@@ -977,7 +999,7 @@ A
 <h5 id="32-regex">3.2 外科手术式清洗 (RegEx 正则替换)</h5>
 <p>适用场景：规律性的杂质，比如删除括号内的备注、去掉所有标点、合并多余空格。
 re.sub(pattern, replacement, string)：核心函数。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<div class="highlight"><span class="filename">正则</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;规  格 : Dell-7000 (保修期/3年) [库存:10]&quot;</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
@@ -999,7 +1021,7 @@ re.sub(pattern, replacement, string)：核心函数。</p>
 </code></pre></div>
 <h5 id="33-ocr">3.3 OCR 专属降噪技巧 (针对性修复)</h5>
 <p>适用场景：解决 OCR 容易把 1 读成 l，把 0 读成 O，或者把完整单词拆开的“老毛病”。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">raw_ocr</span> <span class="o">=</span> <span class="s2">&quot;S0ny 2O24  Cam era&quot;</span> <span class="c1"># 典型 OCR 翻车现场</span>
+<div class="highlight"><span class="filename">降噪</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">raw_ocr</span> <span class="o">=</span> <span class="s2">&quot;S0ny 2O24  Cam era&quot;</span> <span class="c1"># 典型 OCR 翻车现场</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># 1. 易混淆字符修正 (构建映射表)</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 把 &#39;O&#39; 修正为 &#39;0&#39;, 把 &#39;l&#39; 修正为 &#39;1&#39; (视具体业务而定)</span>
@@ -1014,6 +1036,56 @@ re.sub(pattern, replacement, string)：核心函数。</p>
 <a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># 结果对比：</span>
 <a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># 原文: &quot;S0ny 2O24  Cam era&quot;</span>
 <a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># 修正: &quot;S0ny 2024  Camera&quot;</span>
+</code></pre></div>
+<h4 id="15-paddleocr">1.5 核心实战：唤醒 PaddleOCR 引擎</h4>
+<p>这是整个流程的“心脏”。我们需要加载模型，并把图片喂进去。</p>
+<p>代码实现
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">paddleocr</span><span class="w"> </span><span class="kn">import</span> <span class="n">PaddleOCR</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># --- 1. 初始化引擎 (只做一次) ---</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># lang=&quot;ch&quot;: 支持中英文通用</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># use_angle_cls=True: 自动纠正图片方向 (比如手机拍歪了，它能自动转正，强烈建议开启)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># show_log=False: 关掉烦人的进度条日志</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">ocr</span> <span class="o">=</span> <span class="n">PaddleOCR</span><span class="p">(</span><span class="n">use_angle_cls</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;ch&quot;</span><span class="p">,</span> <span class="n">show_log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># --- 2. 执行识别 ---</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;test_image.jpg&#39;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># 这一步会下载模型（约 15MB），首次运行需要联网</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="n">result</span> <span class="o">=</span> <span class="n">ocr</span><span class="o">.</span><span class="n">ocr</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+💡 避坑指南：模型下载卡住怎么办？
+PaddleOCR 首次运行时会自动下载模型文件到 ~/.paddleocr/ 目录。</p>
+<p>现象：程序卡在 Namespace... 不动，或者报错连接超时。</p>
+<p>解法：这是因为国内网络连接 GitHub/Baidu 偶尔抽风。建议手动去官网下载“轻量级中文推理模型”，解压后放在项目目录下，通过 det_model_dir 和 rec_model_dir 参数指定路径。</p>
+<h4 id="16-ocr">1.6 数据解剖：理解 OCR 的返回值</h4>
+<p>PaddleOCR 的返回值结构非常“洋葱”（层层包裹），新手最容易在这里栽跟头。</p>
+<p>返回值结构图解
+它是一个列表的列表的列表。</p>
+<p><div class="highlight"><span class="filename">返回值</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># result 的样子 (假设识别了一行字 &quot;姓名: 张三&quot;)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">[</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  <span class="p">[</span>  <span class="c1"># 第一层：整张图片的结果</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>     <span class="p">[</span> <span class="c1"># 第一行文字的数据</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">]],</span>  <span class="c1"># 0. 坐标 (左上, 右上, 右下, 左下)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="p">(</span><span class="s1">&#39;姓名: 张三&#39;</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">)</span>                         <span class="c1"># 1. 内容与置信度 (Tuple)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>     <span class="p">]</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>  <span class="p">]</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">]</span>
+</code></pre></div>
+提取实战：只拿文字
+通常我们要的只是文字内容，不需要坐标和置信度。</p>
+<p>````python title="遍历解构"</p>
+<h1 id="result-none">判空保护：如果图片全是白的，result 可能为 None 或空列表</h1>
+<p>if not result or not result[0]:
+    print("未识别到文字")
+else:
+    # 遍历每一行识别结果
+    for line in result[0]:
+        # line[1] 是 ('文本', 置信度)
+        # line[1][0] 才是纯文本
+        text_content = line[1][0] 
+        print(f"识别内容: {text_content}")</p>
+<div class="highlight"><pre><span></span><code>    # 结合之前的正则清洗 (举例)
+    # clean_text = re.sub(..., text_content)
 </code></pre></div>
 
 
