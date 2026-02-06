@@ -14,7 +14,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../markdown_study_/">
+        <link rel="next" href="../markdown_study/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>python OCR相关学习 - LIN个人笔记</title>
+        <title>Python OCR相关学习 - LIN个人笔记</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              python OCR相关学习
+              Python OCR相关学习
             
           </span>
         </div>
@@ -208,7 +208,7 @@
   
     
   
-  python OCR相关学习
+  Python OCR相关学习
 
       </a>
     </li>
@@ -221,13 +221,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="../markdown_study_/" class="md-tabs__link">
+      <a href="../markdown_study/" class="md-tabs__link">
         
   
   
     
   
-  markdown格式
+  Markdown格式
 
       </a>
     </li>
@@ -246,7 +246,7 @@
   
     
   
-  makdoce学习
+  MkDocs学习
 
       </a>
     </li>
@@ -336,7 +336,7 @@
   <span class="md-ellipsis">
     
   
-    python OCR相关学习
+    Python OCR相关学习
   
 
     
@@ -354,7 +354,7 @@
   <span class="md-ellipsis">
     
   
-    python OCR相关学习
+    Python OCR相关学习
   
 
     
@@ -533,14 +533,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../markdown_study_/" class="md-nav__link">
+      <a href="../markdown_study/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    markdown格式
+    Markdown格式
   
 
     
@@ -567,7 +567,7 @@
   <span class="md-ellipsis">
     
   
-    makdoce学习
+    MkDocs学习
   
 
     
@@ -778,28 +778,28 @@
 <p>代码通用模组</p>
 <h4 id="_1">库安装</h4>
 <p>在终端（CMD）运行以下命令：
-<div class="highlight"><pre><span></span><code>Bash
-pip install cnocr -i https://pypi.org/simple
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Bash
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip install cnocr -i https://pypi.org/simple
 </code></pre></div></p>
 <h4 id="_2">模块一：环境与模型加载</h4>
 <p>这是“准备工作”。<code>cnocr</code> 是一个预训练好的深度学习模型，它已经“看过”数百万个汉字，所以不需要你重新训练，拿来就能用。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cnocr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CnOcr</span>  <span class="c1"># 导入识别工具</span>
-
-<span class="c1"># 初始化模型</span>
-<span class="c1"># 这一步会加载神经网络权重到内存中。</span>
-<span class="c1"># 如果你有显卡(GPU)，它会自动使用；没有则用CPU。</span>
-<span class="n">ocr</span> <span class="o">=</span> <span class="n">CnOcr</span><span class="p">()</span> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">cnocr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CnOcr</span>  <span class="c1"># 导入识别工具</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 初始化模型</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 这一步会加载神经网络权重到内存中。</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 如果你有显卡(GPU)，它会自动使用；没有则用CPU。</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">ocr</span> <span class="o">=</span> <span class="n">CnOcr</span><span class="p">()</span> 
 </code></pre></div>
 <h4 id="the-eyes">模块二：核心识别 (The "Eyes")</h4>
-<div class="highlight"><pre><span></span><code><span class="c1"># 传入图片路径，返回识别结果</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">ocr</span><span class="o">.</span><span class="n">ocr</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-
-<span class="c1"># result 的长相通常是这样的列表（List of Dictionaries）：</span>
-<span class="c1"># [</span>
-<span class="c1">#    {&#39;text&#39;: &#39;中国能建&#39;, &#39;score&#39;: 0.98}, </span>
-<span class="c1">#    {&#39;text&#39;: &#39;资产编码: 101104...&#39;, &#39;score&#39;: 0.99},</span>
-<span class="c1">#    ...</span>
-<span class="c1"># ]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 传入图片路径，返回识别结果</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">ocr</span><span class="o">.</span><span class="n">ocr</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># result 的长相通常是这样的列表（List of Dictionaries）：</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># [</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#    {&#39;text&#39;: &#39;中国能建&#39;, &#39;score&#39;: 0.98}, </span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#    {&#39;text&#39;: &#39;资产编码: 101104...&#39;, &#39;score&#39;: 0.99},</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1">#    ...</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># ]</span>
 </code></pre></div>
 <ul>
 <li><strong>迁移思路</strong>：如果要识别英文，可以换成</li>
@@ -807,21 +807,21 @@ pip install cnocr -i https://pypi.org/simple
 <p><code>`ocr = CnOcr(det_model_name='en_..._det', rec_model_name='en_..._rec')</code> 或者换用 <code>EasyOCR</code> 库。</p>
 <h4 id="the-brain">模块三：信息清洗 (The "Brain")</h4>
 <p>OCR 识别出来的字是杂乱的，<strong>正则表达式 (Regular Expression / Regex)</strong> 是这里的灵魂。它像一个过滤器，只保留符合规则的文字。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">extract_info</span><span class="p">(</span><span class="n">ocr_result</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ocr_result</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
-
-        <span class="c1"># 🎯 核心技巧：正则匹配</span>
-        <span class="c1"># 解释：r&quot;...&quot; 是正则语法</span>
-        <span class="c1"># (?:编码|编号)  -&gt; 找“编码”或者“编号”这两个词</span>
-        <span class="c1"># [:：\s]* -&gt; 允许后面跟着冒号(中英文皆可)或空格</span>
-        <span class="c1"># ([1]\d{13})    -&gt; 关键！抓取以1开头，后面跟13个数字的串</span>
-        <span class="n">code_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?:编码|编号)[:：\s]*([1]\d</span><span class="si">{13}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">code_match</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">code_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 返回抓到的那串数字</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_info</span><span class="p">(</span><span class="n">ocr_result</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ocr_result</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">text</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="c1"># 🎯 核心技巧：正则匹配</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="c1"># 解释：r&quot;...&quot; 是正则语法</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="c1"># (?:编码|编号)  -&gt; 找“编码”或者“编号”这两个词</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="c1"># [:：\s]* -&gt; 允许后面跟着冒号(中英文皆可)或空格</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="c1"># ([1]\d{13})    -&gt; 关键！抓取以1开头，后面跟13个数字的串</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">code_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?:编码|编号)[:：\s]*([1]\d</span><span class="si">{13}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">if</span> <span class="n">code_match</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="k">return</span> <span class="n">code_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 返回抓到的那串数字</span>
 </code></pre></div>
 <ul>
 <li><strong>迁移思路</strong>：</li>
@@ -836,40 +836,40 @@ pip install cnocr -i https://pypi.org/simple
 <p>老板让你把 100 张资产标签图片的信息统计到一个 Excel 表格里，而不是改文件名。</p>
 <p><strong>修改方案</strong>：
 保留 <code>ocr.ocr</code> 和 <code>extract_info</code>，把最后的 <code>os.rename</code> 换成 <code>pandas</code>。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># 1. 准备一个空列表存数据</span>
-<span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-    <span class="c1"># ... (前面的识别步骤一样) ...</span>
-    <span class="n">code</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="s2">&quot;UNK&quot;</span><span class="p">:</span>
-        <span class="c1"># 2. 不改名，而是存入列表</span>
-        <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;文件名&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
-            <span class="s2">&quot;资产编码&quot;</span><span class="p">:</span> <span class="n">code</span><span class="p">,</span>
-            <span class="s2">&quot;设备名称&quot;</span><span class="p">:</span> <span class="n">name</span>
-        <span class="p">})</span>
-
-<span class="c1"># 3. 循环结束后，一次性写入 Excel</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;资产统计表.xlsx&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Excel 生成完毕！&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 1. 准备一个空列表存数据</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="c1"># ... (前面的识别步骤一样) ...</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">code</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">extract_info</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="s2">&quot;UNK&quot;</span><span class="p">:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="c1"># 2. 不改名，而是存入列表</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>            <span class="s2">&quot;文件名&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>            <span class="s2">&quot;资产编码&quot;</span><span class="p">:</span> <span class="n">code</span><span class="p">,</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>            <span class="s2">&quot;设备名称&quot;</span><span class="p">:</span> <span class="n">name</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="p">})</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># 3. 循环结束后，一次性写入 Excel</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;资产统计表.xlsx&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Excel 生成完毕！&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h4 id="b">场景 B：识别不同类型的单据（如发票）</h4>
 <p>你想识别发票上的“发票代码”和“开票日期”。</p>
 <p><strong>修改方案</strong>：
 只需要修改 <code>extract_info</code> 函数里的正则表达式。</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_invoice_info</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="c1"># 找发票代码 (通常是10或12位数字)</span>
-    <span class="n">code</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;发票代码[:：\s]*(\d{10,12})&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-
-    <span class="c1"># 找日期 (例如 2024年05月01日)</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">年\d</span><span class="si">{2}</span><span class="s2">月\d</span><span class="si">{2}</span><span class="s2">日)&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">code</span><span class="p">,</span> <span class="n">date</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_invoice_info</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="c1"># 找发票代码 (通常是10或12位数字)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">code</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;发票代码[:：\s]*(\d{10,12})&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="c1"># 找日期 (例如 2024年05月01日)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">date</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d</span><span class="si">{4}</span><span class="s2">年\d</span><span class="si">{2}</span><span class="s2">月\d</span><span class="si">{2}</span><span class="s2">日)&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">return</span> <span class="n">code</span><span class="p">,</span> <span class="n">date</span>
 </code></pre></div>
 <h4 id="c-gui">场景 C：做成一个小工具 (GUI)</h4>
 <p>你想做一个像软件一样的窗口，拖进去图片就能识别。</p>
@@ -890,6 +890,38 @@ pip install cnocr -i https://pypi.org/simple
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年2月5日 02:35:53 UTC">2026年2月5日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年2月4日 11:44:48 UTC">2026年2月4日</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
