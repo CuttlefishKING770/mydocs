@@ -24,7 +24,7 @@ theme:
   palette:
     primary: blue-grey             # 【主色调】网页顶部横条和左侧边栏的颜色
                                    # 可选值: indigo, red, pink, purple, teal, green, black, white 等
-    accent: red                    # 【强调色】链接、按钮、鼠标悬停时的颜色
+    accent: blue                    # 【强调色】链接、按钮、鼠标悬停时的颜色
 
   # --- 图标设置 (Icon) ---
   icon:
@@ -43,41 +43,48 @@ nav:
   - MkDocs学习: mkdocs_study.md    # 哪怕文件名拼错了(makdoce)，这里改对就行
 
 # ==========================================
-# 4. Markdown 语法增强 (插件区)
+# 4. 插件配置 (Plugins) - ⚠️ 核心修改区
 # ==========================================
-# 这里开启各种“魔法”功能，比如提示块、流程图、代码高亮
+plugins:
+  # 搜索功能 (必须保留)
+  - search
+  
+  # 时间戳功能 (精确到分钟)
+  - git-revision-date-localized:
+      type: datetime
+      locale: zh
+      timezone: Asia/Shanghai
+      fallback_to_build_date: true
+      enable_creation_date: true
+      custom_format: "%Y-%m-%d %H:%M"  # 效果: 2026-02-05 20:30
+
+# ==========================================
+# 5. Markdown 语法增强
+# ==========================================
 markdown_extensions:
-  # --- 基础增强 ---
-  - admonition                     # 开启提示块功能 (语法: !!! note "标题")
-  - pymdownx.details               # 开启折叠块功能 (语法: ??? note "点击展开")
-  - pymdownx.tilde                 # 开启删除线 (语法: ~~文字~~)
-  - pymdownx.tasklist              # 开启任务列表 (语法: - [x] 已完成)
-  - pymdownx.snippets              # 允许你在文章里直接导入另一个文件的代码，适合长代码管理
+  - admonition
+  - pymdownx.details
+  - pymdownx.tilde
+  - pymdownx.tasklist
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
 
-  # --- 标签页增强 ---
-  - pymdownx.tabbed:               # 开启内容标签页 (同一个框里切换 Python/C++ 代码)
-      alternate_style: true        # 使用更现代的样式
-
-  # --- 代码高亮 (Highlight) ---
+  # 代码高亮
   - pymdownx.highlight:
-      anchor_linenums: true        # 让代码的行号可以被点击和分享 (比如发给别人主要看第10行)
-
-  # --- 超级围栏 (Superfences) - 核心插件 ---
-  # 这个插件非常关键！它做了两件事：
-  # 1. 允许你在列表、引用块里嵌套写代码块
-  # 2. 它是画流程图 (Mermaid) 的基础
+      anchor_linenums: true
+      
+  # 流程图与高级代码框支持
   - pymdownx.superfences:
-      custom_fences:               # 自定义围栏：告诉 MkDocs 怎么处理特殊代码块
-        - name: mermaid            # 如果代码块写的是 ```mermaid
-          class: mermaid           # 给它加上 class="mermaid" 标签
-          format: !!python/name:pymdownx.superfences.fence_code_format # 用 Python 脚本处理它
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 # ==========================================
-# 5. 外部脚本 (Extra JS) - 必须项！
+# 6. 外部脚本 (Extra JS) - ⚠️ 之前报错是因为这里
 # ==========================================
-# MkDocs 本身不懂怎么画图，它需要引入浏览器端的 JavaScript 库来画。
 extra_javascript:
-  # 从 CDN 网络加载 Mermaid 画图库。
-  # 如果不加这一行，你的流程图代码只会被当成普通文字显示，或者显示 undefined。
-  - [https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js](https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js) 
-
+  # 🔴 之前你写成了 [链接](...)，YAML不认这种写法
+  # 🟢 正确写法如下 (只有网址，没有括号)：
+  - https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js
