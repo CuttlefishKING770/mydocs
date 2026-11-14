@@ -1,0 +1,5334 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cuttlefishking770.github.io/mydocs/olt_notes/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../python_study/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>承载网/OLT维护笔记 - LIN个人笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#承载网--olt-维护笔记" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="LIN个人笔记" class="md-header__button md-logo" aria-label="LIN个人笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LIN个人笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              承载网/OLT维护笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  承载网/OLT维护笔记
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../python_study/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python OCR相关学习
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../markdown_study/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Markdown格式
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mkdocs_study/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MkDocs学习
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LIN个人笔记" class="md-nav__button md-logo" aria-label="LIN个人笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg>
+
+    </a>
+    LIN个人笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    承载网/OLT维护笔记
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    承载网/OLT维护笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#目录" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第一章-bas宽带接入服务器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一章 BAS（宽带接入服务器）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 BAS（宽带接入服务器）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-查询-olt-的内外标范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 查询 OLT 的内外标范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-确定-olt-的-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 确定 OLT 的 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-检查有没有-nms-mer-接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 检查有没有 nms-mer 接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-bas-设备信息与上联板对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 BAS 设备信息与上联板对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-六种下挂业务与-bas-上的简写" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 六种下挂业务与 BAS 上的简写
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-写入错误排查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 写入错误排查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-没有-nms-mer-端口时如何写网管-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 没有 nms-mer 端口时，如何写网管 vlan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-绑定--删除网管静态-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 绑定 / 删除网管静态 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-添加组播-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 添加组播 vlan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-各业务子接口与内标外标的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 各业务子接口与内标/外标的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-绑定语音-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.11 绑定语音 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-解绑--重绑语音-ip完整流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.12 解绑 / 重绑语音 IP（完整流程）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-分配-onu-的-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.13 分配 ONU 的 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-查看接口流量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.14 查看接口流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-查看使用用户数在线数" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.15 查看使用用户数（在线数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-改变内标范围内标错误检查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.16 改变内标范围（内标错误检查）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-上联-950b-的-olt-数据制作ipran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.17 上联 950B 的 OLT 数据制作（IPRAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-上联是县乡波分的情况" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.18 上联是县乡波分的情况
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-新加地址池" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.19 新加地址池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#120-查询-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.20 查询 MAC 地址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#121-其他问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.21 其他问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.21 其他问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#网关在子接口上如何修改地址池" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        网关在子接口上，如何修改地址池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用-interface-list-简化绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 interface-list 简化绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二章-idc-设备ce16808中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二章 IDC 设备（CE16808、中兴 9908）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 IDC 设备（CE16808、中兴 9908）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ip-分配配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 IP 分配配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-关闭端口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 关闭端口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-查看丢包与出口流量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 查看丢包与出口流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-修改带宽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 修改带宽
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 中兴 9908
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三章-互联网专线" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三章 互联网专线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 互联网专线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-确定-bas-设备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 确定 BAS 设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-在-bas-上找到对应的子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 在 BAS 上找到对应的子接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 在 BAS 上找到对应的子接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#情况一子接口对应智网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况一：子接口对应智网
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#情况二接-9306-的设备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况二：接 9306 的设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-配置专线子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 配置专线子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-绑定静态-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 绑定静态 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-查询绑定-ip-情况" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 查询绑定 IP 情况
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-针对-ipv6-绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 针对 IPv6 绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-修改专线带宽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 修改专线带宽
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-删除子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 删除子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-带宽模板" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 带宽模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四章-olt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四章 OLT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四章 OLT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-登录方式与基础概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 登录方式与基础概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 登录方式与基础概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#华为-5800--5680t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为 5800 / 5680T
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#中兴-c620--c320" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴 C620 / C320
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-宽带上行模板dba修改" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 宽带上行模板（DBA）修改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-新建线路模板中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 新建线路模板（中兴）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-故障处理流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 故障处理流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 故障处理流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-宽带不通" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1 宽带不通
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-固话语音不通" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2 固话（语音）不通
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-修改-onu-数据中兴-c-系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 修改 ONU 数据（中兴 C 系）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 修改 ONU 数据（中兴 C 系）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#特殊拨号上网的数据制作vlan-599" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        特殊拨号上网的数据制作（vlan 599）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-华为改-iptv-外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 华为改 IPTV 外标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-添加上联口外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 添加上联口外标
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 添加上联口外标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-查看光衰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 查看光衰
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.8 查看光衰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#中兴_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-端口自适应速率" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9 端口自适应速率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-查看端口错误包" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.10 查看端口错误包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-链路聚合与相关协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11 链路聚合与相关协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11 链路聚合与相关协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4111-c620" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.1 C620
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4112-c300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.2 C300
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4113-c-系-olt-清除全部-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.3 C 系 OLT 清除全部 MAC 地址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4114-华为-ma5680t-设置链路聚合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.4 华为 MA5680T 设置链路聚合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4115-华为-ma5800-设置链路聚合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.5 华为 MA5800 设置链路聚合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-华为改上联口-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.12 华为改上联口 VLAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-华为打开上联口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.13 华为打开上联口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-华为组播" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.14 华为组播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#415-用户数据变更" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15 用户数据变更
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.15 用户数据变更">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4151-中兴修改-vlan批量改-s-vid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.1 中兴修改 vlan（批量改 S-VID）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4152-迁移数据pon-业务割接--maccut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.2 迁移数据（PON 业务割接 / MacCut）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4153-telnet-设定迁移失败时用-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.3 telnet 设定（迁移失败时用 telnet）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4154-华为网管批量修改业务外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.4 华为网管批量修改业务外标
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#416-新建网管对象中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.16 新建网管对象（中兴）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#417-其他相关指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17 其他相关指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.17 其他相关指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4171-c320-板卡启用万兆" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17.1 C320 板卡启用万兆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4172-华为加载新板卡" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17.2 华为加载新板卡
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第五章-号线系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五章 号线系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五章 号线系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-修改号线-pon-口-vlansvlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 修改号线 PON 口 VLAN（SVLAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-修改号线语音-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 修改号线语音 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第六章-账号与网站汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第六章 账号与网站汇总
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六章 账号与网站汇总">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-宽带用户变更明细" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 宽带用户变更明细
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-测速平台需内网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 测速平台（需内网）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-公众平台需-ie8--360-浏览器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 公众平台（需 IE8 / 360 浏览器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-号线系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 号线系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-账号速查表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 账号速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第七章-python-与-pandas-速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第七章 Python 与 Pandas 速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 Python 与 Pandas 速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-读文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 读文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-查看表格相关信息" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 查看表格相关信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-表格操作指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 表格操作指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-常用代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 常用代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第八章-ip-备案" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第八章 IP 备案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第八章 IP 备案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-系统与要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 系统与要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-流程一单位信息录入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 流程一：单位信息录入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-流程二ip-分配查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 流程二：IP 分配查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第九章-实际配置案例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第九章 实际配置案例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第九章 实际配置案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-案例一语音地址池加-ip-段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 案例一：语音地址池加 IP 段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-案例二删除-c600-系列的-lacp-聚合组员" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 案例二：删除 C600 系列的 LACP 聚合组员
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-案例三改-c300-的组播" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 案例三：改 C300 的组播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-案例四看华为-olt-的-onu-光衰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 案例四：看华为 OLT 的 ONU 光衰
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-宽带拉流数据制作完整配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 宽带拉流数据制作（完整配置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录常用命令速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录：常用命令速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录：常用命令速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bas华为-ne-系列" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BAS（华为 NE 系列）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#中兴-oltc300--c600--c620--c320" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴 OLT（C300 / C600 / C620 / C320）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为-oltma5680t--ma5800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为 OLT（MA5680T / MA5800）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idcce16808中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDC（CE16808、中兴 9908）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python OCR相关学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown格式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs_study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#目录" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第一章-bas宽带接入服务器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一章 BAS（宽带接入服务器）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 BAS（宽带接入服务器）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-查询-olt-的内外标范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 查询 OLT 的内外标范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-确定-olt-的-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 确定 OLT 的 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-检查有没有-nms-mer-接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 检查有没有 nms-mer 接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-bas-设备信息与上联板对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 BAS 设备信息与上联板对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-六种下挂业务与-bas-上的简写" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 六种下挂业务与 BAS 上的简写
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-写入错误排查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 写入错误排查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-没有-nms-mer-端口时如何写网管-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 没有 nms-mer 端口时，如何写网管 vlan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-绑定--删除网管静态-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 绑定 / 删除网管静态 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-添加组播-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 添加组播 vlan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-各业务子接口与内标外标的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 各业务子接口与内标/外标的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-绑定语音-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.11 绑定语音 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-解绑--重绑语音-ip完整流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.12 解绑 / 重绑语音 IP（完整流程）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-分配-onu-的-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.13 分配 ONU 的 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-查看接口流量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.14 查看接口流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-查看使用用户数在线数" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.15 查看使用用户数（在线数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-改变内标范围内标错误检查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.16 改变内标范围（内标错误检查）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-上联-950b-的-olt-数据制作ipran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.17 上联 950B 的 OLT 数据制作（IPRAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-上联是县乡波分的情况" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.18 上联是县乡波分的情况
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-新加地址池" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.19 新加地址池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#120-查询-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.20 查询 MAC 地址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#121-其他问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.21 其他问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.21 其他问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#网关在子接口上如何修改地址池" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        网关在子接口上，如何修改地址池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用-interface-list-简化绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 interface-list 简化绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第二章-idc-设备ce16808中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二章 IDC 设备（CE16808、中兴 9908）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 IDC 设备（CE16808、中兴 9908）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ip-分配配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 IP 分配配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-关闭端口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 关闭端口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-查看丢包与出口流量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 查看丢包与出口流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-修改带宽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 修改带宽
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 中兴 9908
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第三章-互联网专线" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三章 互联网专线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 互联网专线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-确定-bas-设备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 确定 BAS 设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-在-bas-上找到对应的子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 在 BAS 上找到对应的子接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 在 BAS 上找到对应的子接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#情况一子接口对应智网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况一：子接口对应智网
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#情况二接-9306-的设备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        情况二：接 9306 的设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-配置专线子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 配置专线子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-绑定静态-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 绑定静态 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-查询绑定-ip-情况" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 查询绑定 IP 情况
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-针对-ipv6-绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 针对 IPv6 绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-修改专线带宽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 修改专线带宽
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-删除子接口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 删除子接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-带宽模板" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 带宽模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第四章-olt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四章 OLT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第四章 OLT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-登录方式与基础概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 登录方式与基础概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 登录方式与基础概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#华为-5800--5680t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为 5800 / 5680T
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#中兴-c620--c320" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴 C620 / C320
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-宽带上行模板dba修改" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 宽带上行模板（DBA）修改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-新建线路模板中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 新建线路模板（中兴）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-故障处理流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 故障处理流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 故障处理流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-宽带不通" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1 宽带不通
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-固话语音不通" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2 固话（语音）不通
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-修改-onu-数据中兴-c-系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 修改 ONU 数据（中兴 C 系）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 修改 ONU 数据（中兴 C 系）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#特殊拨号上网的数据制作vlan-599" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        特殊拨号上网的数据制作（vlan 599）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-华为改-iptv-外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 华为改 IPTV 外标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-添加上联口外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 添加上联口外标
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 添加上联口外标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-查看光衰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 查看光衰
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.8 查看光衰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#中兴_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-端口自适应速率" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9 端口自适应速率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-查看端口错误包" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.10 查看端口错误包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-链路聚合与相关协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11 链路聚合与相关协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.11 链路聚合与相关协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4111-c620" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.1 C620
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4112-c300" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.2 C300
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4113-c-系-olt-清除全部-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.3 C 系 OLT 清除全部 MAC 地址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4114-华为-ma5680t-设置链路聚合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.4 华为 MA5680T 设置链路聚合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4115-华为-ma5800-设置链路聚合" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.11.5 华为 MA5800 设置链路聚合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-华为改上联口-vlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.12 华为改上联口 VLAN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-华为打开上联口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.13 华为打开上联口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-华为组播" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.14 华为组播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#415-用户数据变更" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15 用户数据变更
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.15 用户数据变更">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4151-中兴修改-vlan批量改-s-vid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.1 中兴修改 vlan（批量改 S-VID）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4152-迁移数据pon-业务割接--maccut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.2 迁移数据（PON 业务割接 / MacCut）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4153-telnet-设定迁移失败时用-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.3 telnet 设定（迁移失败时用 telnet）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4154-华为网管批量修改业务外标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.15.4 华为网管批量修改业务外标
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#416-新建网管对象中兴" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.16 新建网管对象（中兴）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#417-其他相关指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17 其他相关指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.17 其他相关指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4171-c320-板卡启用万兆" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17.1 C320 板卡启用万兆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4172-华为加载新板卡" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.17.2 华为加载新板卡
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第五章-号线系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五章 号线系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第五章 号线系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-修改号线-pon-口-vlansvlan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 修改号线 PON 口 VLAN（SVLAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-修改号线语音-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 修改号线语音 IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第六章-账号与网站汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第六章 账号与网站汇总
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第六章 账号与网站汇总">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-宽带用户变更明细" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 宽带用户变更明细
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-测速平台需内网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 测速平台（需内网）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-公众平台需-ie8--360-浏览器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 公众平台（需 IE8 / 360 浏览器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-号线系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 号线系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-账号速查表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 账号速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第七章-python-与-pandas-速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第七章 Python 与 Pandas 速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 Python 与 Pandas 速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-读文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 读文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-查看表格相关信息" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 查看表格相关信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-表格操作指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 表格操作指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-常用代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 常用代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第八章-ip-备案" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第八章 IP 备案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第八章 IP 备案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-系统与要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 系统与要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-流程一单位信息录入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 流程一：单位信息录入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-流程二ip-分配查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 流程二：IP 分配查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#第九章-实际配置案例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第九章 实际配置案例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第九章 实际配置案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-案例一语音地址池加-ip-段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 案例一：语音地址池加 IP 段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-案例二删除-c600-系列的-lacp-聚合组员" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 案例二：删除 C600 系列的 LACP 聚合组员
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-案例三改-c300-的组播" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 案例三：改 C300 的组播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-案例四看华为-olt-的-onu-光衰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 案例四：看华为 OLT 的 ONU 光衰
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-宽带拉流数据制作完整配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 宽带拉流数据制作（完整配置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录常用命令速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录：常用命令速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录：常用命令速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bas华为-ne-系列" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BAS（华为 NE 系列）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#中兴-oltc300--c600--c620--c320" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中兴 OLT（C300 / C600 / C620 / C320）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#华为-oltma5680t--ma5800" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        华为 OLT（MA5680T / MA5800）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idcce16808中兴-9908" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDC（CE16808、中兴 9908）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="承载网--olt-维护笔记">承载网 / OLT 维护笔记</h1>
+<blockquote>
+<p><strong>发布说明</strong>：本页为公开站点，文中所有系统登录口令已替换为<code>&lt;密码已隐藏&gt;</code>。完整口令保存在本地原始文档中，不随本页发布。</p>
+<p>本文档由原《笔记831.docm》整理合并而成。整理时做了三件事：
+1. <strong>重排章节</strong>：原文编号混乱（一、二、四、五、八与 1/2/3/5/6/7 混用，"三"缺失），现统一为一～九章，节号连续；
+2. <strong>修正错漏</strong>：统一了错别字与命令拼写（<code>dispaly</code>→<code>display</code>、"魔板"→"模板"、"案列"→"案例"、"comit"→<code>commit</code>、"sw vlan"→<code>switchport vlan</code> 等），并把原文档里只有截图、没有文字的步骤补成了可读的操作说明；
+3. <strong>归位插图</strong>：原文共 204 张内嵌图，其中 2 组是同一截图的重复拷贝，去重后 <strong>202 张全部保留</strong>，按内容就近插入，图注说明该图在看什么。</p>
+</blockquote>
+<hr />
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#第一章-bas宽带接入服务器">第一章 BAS（宽带接入服务器）</a></li>
+<li><a href="#第二章-idc-设备ce16808中兴-9908">第二章 IDC 设备（CE16808 / 中兴 9908）</a></li>
+<li><a href="#第三章-互联网专线">第三章 互联网专线</a></li>
+<li><a href="#第四章-olt">第四章 OLT</a></li>
+<li><a href="#第五章-号线系统">第五章 号线系统</a></li>
+<li><a href="#第六章-账号与网站汇总">第六章 账号与网站汇总</a></li>
+<li><a href="#第七章-python-与-pandas-速查">第七章 Python / Pandas 速查</a></li>
+<li><a href="#第八章-ip-备案">第八章 IP 备案</a></li>
+<li><a href="#第九章-实际配置案例">第九章 实际配置案例</a></li>
+<li><a href="#附录常用命令速查">附录：常用命令速查</a></li>
+</ul>
+<hr />
+<h2 id="第一章-bas宽带接入服务器">第一章 BAS（宽带接入服务器）</h2>
+<h3 id="11-查询-olt-的内外标范围">1.1 查询 OLT 的内外标范围</h3>
+<p>前提：已经拿到 OLT 的 IP，需要确认它挂在哪台 BAS 上、走哪个子接口。</p>
+<p><strong>登录方式</strong>：目前（HW 期间）只能以 VPN + SSH 方式登录。正常期间可用 V5 VPN，在 3A 管理里直接进入。</p>
+<p><img alt="通过 3A 管理直接进入 BAS" src="../assets/p0006.png" /></p>
+<p>登录后查路由，定位 OLT 挂在哪个接口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>display ip routing-table x.x.x.x        # 此处填 OLT 对应的 IP
+</code></pre></div>
+<p><img alt="路由查询结果，看下一跳接口" src="../assets/p0012.png" />
+<img alt="路由明细" src="../assets/p0013.png" /></p>
+<p>找到 OLT 对应的 Eth-Trunk 口后，先整体看一遍端口描述：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>display interface description
+</code></pre></div>
+<p><img alt="接口描述列表" src="../assets/p0019.png" /></p>
+<p>找到 PPOE（自动拨号）那一行的子接口，进去看配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>display current-configuration interface Eth-Trunk xxx.xxx
+</code></pre></div>
+<p><img alt="子接口配置，重点看 user-vlan / qinq" src="../assets/p0024.png" /></p>
+<p>判读规则：</p>
+<ul>
+<li><code>qinq</code> 后面是<strong>外标范围</strong>；</li>
+<li>上面 <code>user-vlan</code> 是<strong>内标范围</strong>；</li>
+<li>示例图中：内标范围 <code>1000-2000</code>，外标范围 <code>100-110</code>、<code>301-313</code>。</li>
+</ul>
+<p>需要看物理口时：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>interface GigabitEthernet x/x/x
+</code></pre></div>
+<p><img alt="物理接口信息" src="../assets/p0030.png" /></p>
+<h3 id="12-确定-olt-的-ip">1.2 确定 OLT 的 IP</h3>
+<ol>
+<li>先在<strong>私网地址规划表</strong>中挑选一个未使用的 IP；</li>
+<li>进入 BAS，注意提示符：<code>&lt; &gt;</code> 是用户模式，<code>[ ]</code> 是<strong>管理模式</strong>，只有管理模式才能做数据配置：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>system
+</code></pre></div>
+<p><img alt="进入管理模式，提示符由 &lt;&gt; 变 []" src="../assets/p0041.png" /></p>
+<ol>
+<li>配置前再核对一次接口描述，避免配错口：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>display interface description
+</code></pre></div>
+<p><img alt="接口描述" src="../assets/p0044.png" /></p>
+<p><img alt="私网地址规划表（选未用 IP）" src="../assets/p0036.png" /></p>
+<h3 id="13-检查有没有-nms-mer-接口">1.3 检查有没有 nms-mer 接口</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>display interface description
+</code></pre></div>
+<p><img alt="在接口描述里搜 NMS / MER" src="../assets/p0048.png" /></p>
+<p>找到可疑的子接口后，确认它下面有没有数据：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>display current-configuration interface Eth-Trunk7.2
+</code></pre></div>
+<p><img alt="子接口配置" src="../assets/p0053.png" /></p>
+<p>示例配置形态：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>interface Eth-Trunk7.2
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a> description SELF,NMS_HBYC-MER_ETH1,20G:1
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a> user-vlan xxxx 2 99
+</code></pre></div>
+<p>如果该子接口已经规划了<strong>网管 vlan 范围</strong>，就可以直接在这上面绑定网管静态 IP（见 1.8）。</p>
+<h3 id="14-bas-设备信息与上联板对应关系">1.4 BAS 设备信息与上联板对应关系</h3>
+<p><strong>板卡识别</strong>：中兴主控板为 <code>SMXA</code>，业务板为 <code>GTGH</code>；板卡型号中<strong>带 X 或 B 的是万兆板卡</strong>。</p>
+<p><img alt="板卡信息" src="../assets/p0063.png" /></p>
+<p><strong>OLT 上联板与 OLT 型号的对应关系</strong>（查外标时用）：</p>
+<table>
+<thead>
+<tr>
+<th>OLT 型号</th>
+<th>上联板端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C620</td>
+<td><code>XG1/4/1</code>、<code>XG1/5/1</code></td>
+</tr>
+<tr>
+<td>C650</td>
+<td><code>XG1/5/1</code>、<code>XG1/6/1</code></td>
+</tr>
+<tr>
+<td>5800x17</td>
+<td><code>XG1/8/1</code>、<code>XG1/9/1</code></td>
+</tr>
+<tr>
+<td>5800x15</td>
+<td><code>XG1/9/1</code>、<code>XG1/10/1</code></td>
+</tr>
+<tr>
+<td>C320</td>
+<td><code>XG1/3/1</code>、<code>XG1/4/1</code></td>
+</tr>
+<tr>
+<td>C300</td>
+<td><code>XG1/19/1</code>、<code>XG1/20/1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>外标数量</strong>：针对大型 OLT 板卡 —— 5800x17、5800x15、C650、C300、C600，<strong>一台设备有 2 个外标</strong>；其他设备只有 1 个外标（宽带 vlan 依次增加，IPTV 同理）。</p>
+<h3 id="15-六种下挂业务与-bas-上的简写">1.5 六种下挂业务与 BAS 上的简写</h3>
+<p>一个 OLT 下挂的业务就是这 6 类，BAS 上每个业务一个子接口，靠内外标区分。先记住业务与简写的对应关系，后面看配置才看得懂：</p>
+<p>OLT 下挂的 6 种业务：</p>
+<table>
+<thead>
+<tr>
+<th>业务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPTV</td>
+<td>电视</td>
+</tr>
+<tr>
+<td>宽带</td>
+<td>PPPoE 上网</td>
+</tr>
+<tr>
+<td>语音</td>
+<td>固定电话</td>
+</tr>
+<tr>
+<td>组播</td>
+<td>IGMP</td>
+</tr>
+<tr>
+<td>网管</td>
+<td>设备纳管</td>
+</tr>
+<tr>
+<td>互联网专线</td>
+<td>DIA</td>
+</tr>
+</tbody>
+</table>
+<p>BAS 配置里出现的简写：</p>
+<table>
+<thead>
+<tr>
+<th>简写</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IGMP</code></td>
+<td>组播</td>
+</tr>
+<tr>
+<td><code>NMS</code></td>
+<td>网管</td>
+</tr>
+<tr>
+<td><code>RMS</code></td>
+<td>宽带纳管平台</td>
+</tr>
+<tr>
+<td><code>IMS</code></td>
+<td>有线固话（语音）</td>
+</tr>
+<tr>
+<td><code>PPOE</code></td>
+<td>自动上网（拨号宽带）</td>
+</tr>
+<tr>
+<td><code>DIA</code></td>
+<td>互联网专线</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-写入错误排查">1.6 写入错误排查</h3>
+<p>配错了先看这个 IP 到底被写在什么地方：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>display current-configuration | include x.x.x.x
+</code></pre></div>
+<p><img alt="按 IP 搜索配置" src="../assets/p0106.png" /></p>
+<p><img alt="搜到的子接口上下文" src="../assets/p0108.png" /></p>
+<p>确认是误写（IP 实际未被占用）后，撤回静态 IP 绑定：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>undo static-user xxxx.xxxx.xxxx.xxxx
+</code></pre></div>
+<p>如果条目是给网管用的（<code>domain-name olt-guanli</code>），撤回后网管会立刻掉线，改完要重新绑回。</p>
+<h3 id="17-没有-nms-mer-端口时如何写网管-vlan">1.7 没有 nms-mer 端口时，如何写网管 vlan</h3>
+<p>四步：看规划的子接口 → 看规划的网管 vlan → 进网管接口手工写 vlan → 按图配置。</p>
+<ol>
+<li>先看之前规划的子接口：</li>
+</ol>
+<p><img alt="规划的子接口" src="../assets/p0115.png" /></p>
+<ol>
+<li>再看规划的网管 vlan：</li>
+</ol>
+<p><img alt="规划的网管 vlan" src="../assets/p0117.png" /></p>
+<ol>
+<li>进入对应的网管接口，手工写入网管 vlan：</li>
+</ol>
+<p><img alt="进入网管接口" src="../assets/p0120.png" /></p>
+<ol>
+<li>按此图形态配置：</li>
+</ol>
+<p><img alt="配置示例" src="../assets/p0122.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>interface Eth-Trunk xxx
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a> description SELF,NMS_HBYC-xxxxxx(基站名称)_SM1,20G:1
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a> statistic enable
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a> user-vlan xxx
+</code></pre></div>
+<p>回到 BAS，若出现错误提示，<strong>先敲 <code>commit</code> 提交</strong>，再进 BAS 敲下面的命令：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>access-type layer2-subscriber default-domain authentication dia
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>authentication-method bind
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>ip-trigger
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>arp-trigger
+</code></pre></div>
+<p><img alt="BAS 上敲上述四条命令" src="../assets/p0128.png" />
+<img alt="报错时先 commit" src="../assets/p0130.png" />
+<img alt="四条命令的完整输入" src="../assets/p0136.png" /></p>
+<p><code>commit</code> 确认后，用 <code>display this</code> 检查数据是否正常（对照上图第 4 步的形态）。</p>
+<h3 id="18-绑定--删除网管静态-ip">1.8 绑定 / 删除网管静态 IP</h3>
+<p>绑定（注意 gateway 一般取网段的 <code>.1</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>static-user &lt;起始IP&gt; &lt;终止IP&gt; gateway &lt;网关&gt; interface Eth-Trunk xxxx(mer接口) \
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  vlan xxxx(网管vlan) domain-name olt-guanli detect
+</code></pre></div>
+<p><img alt="绑定网管静态 IP" src="../assets/p0143.png" /></p>
+<p><strong>删除绑定时报"IP 已在线"</strong>，说明用户还挂着，先进 <code>aaa</code> 视图把在线用户踢掉：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>aaa
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cut access-user ip-address x.x.x.x
+</code></pre></div>
+<p><img alt="删除时报 IP 已在线" src="../assets/p0147.png" />
+<img alt="cut access-user 踢掉在线用户" src="../assets/p0151.png" /></p>
+<h3 id="19-添加组播-vlan">1.9 添加组播 vlan</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>interface Eth-Trunk x.xxxx                 # 进入子接口
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a> vlan-type dot1q xxxx                      # 组播 vlan
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a> description SELF,IGMP_HBYC-xxxxx(基站名称)-xxxx(设备型号)_ETH1,20G:1
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a> ip address xxxx(组播IP) 255.255.255.252
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a> pim sm
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a> igmp enable
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a> ip urpf loose
+</code></pre></div>
+<p><img alt="组播子接口配置" src="../assets/p0157.png" />
+<img alt="ip urpf loose" src="../assets/p0165.png" /></p>
+<p>保存：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>save
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>y
+</code></pre></div>
+<p><img alt="save" src="../assets/p0170.png" /></p>
+<h3 id="110-各业务子接口与内标外标的对应关系">1.10 各业务子接口与内标/外标的对应关系</h3>
+<p>同一台 BAS 上，不同业务用<strong>子接口后缀</strong>区分，务必按后缀认业务：</p>
+<table>
+<thead>
+<tr>
+<th>子接口</th>
+<th>业务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.100</code></td>
+<td>IPv6</td>
+<td>双栈宽带上行</td>
+</tr>
+<tr>
+<td><code>.48</code></td>
+<td>RMS 纳管</td>
+<td>宽带纳管平台</td>
+</tr>
+<tr>
+<td><code>.10002</code></td>
+<td>IPTV</td>
+<td>电视业务</td>
+</tr>
+<tr>
+<td><code>.1000</code></td>
+<td>IMS</td>
+<td>有线固话（语音）</td>
+</tr>
+<tr>
+<td><code>.2</code></td>
+<td>NMS/MER</td>
+<td>网管</td>
+</tr>
+</tbody>
+</table>
+<p>逐个检查有没有数据：</p>
+<p><img alt="检查其他子接口" src="../assets/p0180.png" /></p>
+<p>IPv6（<code>.100</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>interface Eth-Trunk7.100
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a> description SELF,PPPOE_HBYC-MER_ETH1,20G:1
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a> ipv6 enable
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> ipv6 address auto link-local
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a> user-vlan 600 3000 qinq 100 300
+</code></pre></div>
+<p><img alt=".100 子接口" src="../assets/p0188.png" /></p>
+<p>RMS 纳管（<code>.48</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>interface Eth-Trunk7.48
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a> description SELF,RMS_HBYC-MER_ETH1,20G:1
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a> user-vlan 48 qinq 100 300
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> user-vlan 48 qinq 900
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a> user-vlan 48 qinq 1000 1100
+</code></pre></div>
+<p><img alt=".48 子接口" src="../assets/p0196.png" /></p>
+<p>IPTV（<code>.10002</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>interface Eth-Trunk7.10002
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a> description SELF,IPTV_HBYC-MER_ETH1,20G:1
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a> user-vlan 2001 3999 qinq 3602 3700
+</code></pre></div>
+<p><img alt=".10002 子接口" src="../assets/p0203.png" /></p>
+<p>语音（<code>.1000</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>interface Eth-Trunk7.1000
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a> description SELF,IMS_HBYC-MER_ETH1,20G:1
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a> user-vlan 50 qinq 1000 1100
+</code></pre></div>
+<p><img alt=".1000 子接口" src="../assets/p0212.png" /></p>
+<h3 id="111-绑定语音-ip">1.11 绑定语音 IP</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>static-user &lt;起始IP&gt; &lt;终止IP&gt; gateway &lt;网关&gt; vpn-instance voice \
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  interface Eth-Trunk xxxx(语音vlan) vlan 50 qinq &lt;语音外标&gt; domain-name ims detect
+</code></pre></div>
+<p><img alt="绑定语音静态 IP" src="../assets/p0218.png" /></p>
+<p><strong>异常处理</strong>：若提示"静态地址被占用"：</p>
+<p><img alt="提示地址被占用" src="../assets/p0220.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>display current-configuration | include x.x.x.x      # 查问题 IP 被写在哪
+</code></pre></div>
+<p><img alt="查到是误写" src="../assets/p0225.png" /></p>
+<p>确认只是输入错误、并未真正占用时，直接删掉：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>undo static-user &lt;起始IP&gt; &lt;终止IP&gt;
+</code></pre></div>
+<p><img alt="undo static-user" src="../assets/p0229.png" /></p>
+<p>查看 e 口（Eth-Trunk 逻辑口）对应哪个物理接口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>display interface brief
+</code></pre></div>
+<p><img alt="display interface brief" src="../assets/p0235.png" /></p>
+<h3 id="112-解绑--重绑语音-ip完整流程">1.12 解绑 / 重绑语音 IP（完整流程）</h3>
+<ol>
+<li>先找该 OLT 归属的 BAS，确认绑定关系：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>display current-configuration | include x.x.x.x
+</code></pre></div>
+<ol>
+<li>确认没绑过（用群里的地址规划表核对）：</li>
+</ol>
+<p><img alt="核对地址规划表" src="../assets/p0245.png" /></p>
+<ol>
+<li><strong>解绑</strong>：先关语音子接口，再删原绑定：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>interface Eth-Trunk x.900
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a> shutdown
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>undo static-user 100.51.180.221 100.51.180.240 vpn-instance voice
+</code></pre></div>
+<ol>
+<li><strong>重新绑定</strong>：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>static-user 100.51.180.221 100.51.180.240 gateway 100.51.180.1 vpn-instance voice \
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>  interface Eth-Trunk4.1000 vlan 50 qinq 1020 domain-name ims detect
+</code></pre></div>
+<h3 id="113-分配-onu-的-ip">1.13 分配 ONU 的 IP</h3>
+<p>以给 <code>100.93.236.18</code>（夷陵区下坪 C620）分配一个 ONU IP 为例。</p>
+<p>先看这个 IP 走哪个子接口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>display ip routing-table x.x.x.x        # ONU IP
+</code></pre></div>
+<p><img alt="ONU IP 路由" src="../assets/p0264.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>display current-configuration interface Eth-Trunk xxx.xxx
+</code></pre></div>
+<p><img alt="子接口配置，确定 vlan" src="../assets/p0267.png" /></p>
+<p>再在私网地址规划表里找未用 IP，填上"已用"：</p>
+<p><img alt="私网地址规划表" src="../assets/p0270.png" /></p>
+<p>绑定静态地址：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>static-user &lt;起始IP&gt; &lt;终止IP&gt; gateway &lt;网关&gt; interface Eth-Trunk xxx \
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>  vlan x domain-name dia detect
+</code></pre></div>
+<p><img alt="绑定 ONU 静态 IP" src="../assets/p0274.png" /></p>
+<h3 id="114-查看接口流量">1.14 查看接口流量</h3>
+<p><strong>专线流量</strong>：先看接口描述找专线口（描述里带 <code>DIA</code> 的为专线），直接进接口看数据大小：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>display interface description
+</code></pre></div>
+<p><img alt="接口描述找 DIA" src="../assets/p0280.png" />
+<img alt="对应的接口" src="../assets/p0282.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>display interface Eth-Trunk x.xxx
+</code></pre></div>
+<p><img alt="流量数据" src="../assets/p0286.png" /></p>
+<p>判读：<strong><code>output</code> 是下载（下行），<code>input</code> 是上传（上行）</strong>。</p>
+<h3 id="115-查看使用用户数在线数">1.15 查看使用用户数（在线数）</h3>
+<p>先看对应的拨号 vlan：</p>
+<p><img alt="拨号 vlan" src="../assets/p0292.png" /></p>
+<p>再看子接口里哪条是 ppoe：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>display interface description
+</code></pre></div>
+<p><img alt="接口描述" src="../assets/p0295.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>display current-configuration interface Eth-Trunk0.117
+</code></pre></div>
+<p><img alt="确认该子接口含拨号 vlan" src="../assets/p0298.png" /></p>
+<p>确认是此子接口后，统计在线用户：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>display access-user interface Eth-Trunk0.117 pevlan 3900
+</code></pre></div>
+<p><img alt="在线用户数" src="../assets/p0301.png" /></p>
+<h3 id="116-改变内标范围内标错误检查">1.16 改变内标范围（内标错误检查）</h3>
+<ol>
+<li>先看外标的数据做了没有：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>show mac vlan xx
+</code></pre></div>
+<p><img alt="该外标下有没有其他 PON 口在用" src="../assets/p0305.png" /></p>
+<ol>
+<li>若有别的 PON 口占用，回去检查 BAS 上的内外标范围：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>display current-configuration | include &lt;OLT的IP&gt;
+</code></pre></div>
+<p><img alt="按 OLT IP 搜配置" src="../assets/p0309.png" /></p>
+<ol>
+<li>找到对应子接口，看是不是 PPOE 口：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>display interface description
+</code></pre></div>
+<p><img alt="接口描述" src="../assets/p0312.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>interface xxx
+</code></pre></div>
+<ol>
+<li>若找不到 ppoe 子接口，可直接试写指令，看错误提示反推：</li>
+</ol>
+<p><img alt="直接试写看报错" src="../assets/p0316.png" /></p>
+<ol>
+<li>若发现 BAS 上的内标范围不够（超范围），手动补一段：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>user-vlan xxxx(起始) xxx(截止) qinq xxx xxx
+</code></pre></div>
+<p><img alt="内标范围超限" src="../assets/p0319.png" />
+<img alt="手工补充 user-vlan" src="../assets/p0321.png" /></p>
+<h3 id="117-上联-950b-的-olt-数据制作ipran">1.17 上联 950B 的 OLT 数据制作（IPRAN）</h3>
+<p>这类 OLT 不是直连 BAS，而是经 9306（IPRAN）上联。</p>
+<ol>
+<li>先确定对应 BAS，再找到对接的 <strong>9306</strong>；</li>
+<li>去 9306 上看子接口：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>display current-configuration | include description
+</code></pre></div>
+<p><img alt="9306 子接口" src="../assets/p0330.png" /></p>
+<ol>
+<li>发现子接口后回 BAS，此子接口应与 BAS 一一对应；</li>
+<li>看 BAS 上对应 Eth 口的 <strong><code>.48</code></strong> 子接口（网管/RMS）：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>display current-configuration interface Eth-Trunk x.48
+</code></pre></div>
+<p><img alt=".48 子接口数据" src="../assets/p0336.png" /></p>
+<ol>
+<li>确定未使用的外标（如 127-129 可用未新增），添加：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>user-vlan 48 qinq xx xx
+</code></pre></div>
+<p><img alt="添加宽带外标" src="../assets/p0342.png" /></p>
+<ol>
+<li>再做 ppoe 子接口（宽带）：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>interface Eth-Trunk0.112
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a> description SELF,PPPOE_HBYC-YL-HW-S9306-T1_ET1,20G:1,
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a> ipv6 enable
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a> ipv6 address auto link-local
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a> statistic enable
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a> user-vlan 1000 2000 qinq 112 115
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a> pppoe-server bind Virtual-Template 1
+</code></pre></div>
+<p><img alt="pppoe 子接口" src="../assets/p0354.png" /></p>
+<ol>
+<li>再去做网管：</li>
+</ol>
+<p><img alt="做网管" src="../assets/p0356.png" /></p>
+<ol>
+<li>再去绑定静态 IP：</li>
+</ol>
+<p><img alt="绑定静态 IP" src="../assets/p0357.png" /></p>
+<p><strong>注意</strong>：走 950B 可以不用写组播。</p>
+<p><strong>VLAN 穿透</strong>：去 93 上把 vlan 穿透，传到 BAS 的同时，也要保证到 <strong>CX600</strong> 的 vlan 穿透，传输侧同样要是对应端口。</p>
+<p><img alt="93 上穿透 vlan" src="../assets/p0362.png" />
+<img alt="传输侧端口" src="../assets/p0364.png" /></p>
+<p>最后确认 vlan 起来了没有：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>display vlan xx
+</code></pre></div>
+<p><img alt="display vlan" src="../assets/p0368.png" /></p>
+<p>没起来就去 9306 上敲：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>vlan xxx
+</code></pre></div>
+<h3 id="118-上联是县乡波分的情况">1.18 上联是县乡波分的情况</h3>
+<p><strong>现象</strong>（2024/1/14）：走县乡波分、宽带 vlan 时，ONU 获取不到宽带地址。</p>
+<ul>
+<li>设备确实走的县乡波分；</li>
+<li>宽带子接口也做了：</li>
+</ul>
+<p><img alt="已做宽带子接口" src="../assets/p0381.png" /></p>
+<ul>
+<li>但 <code>.48</code> RMS 管理口里没数据：</li>
+</ul>
+<p><img alt=".48 无数据" src="../assets/p0383.png" /></p>
+<p><strong>处理</strong>：补一条</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>user-vlan 48 qinq 120
+</code></pre></div>
+<p>若修改后仍不通，注意中间还穿了一台 7800 交换机（两河）。</p>
+<h3 id="119-新加地址池">1.19 新加地址池</h3>
+<p>先看全局配置，找到对应名称的地址池（<code>domain xxxx</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>display current-configuration
+</code></pre></div>
+<p><img alt="全局配置" src="../assets/p0402.png" /></p>
+<p>把需要添加的 IP 段加进去：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>ip pool dia55 bas local
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a> gateway 122.190.251.97 255.255.255.240
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a> section 0 122.190.251.98 122.190.251.110
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a> excluded-ip-address 122.190.251.98 122.190.251.110
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a> dns-server 218.106.127.122 218.104.111.122
+</code></pre></div>
+<p>再进 AAA 域把地址池挂上：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>aaa
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a> domain ims
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>  authentication-scheme none
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>  accounting-scheme none
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>  ip-pool ims
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>  ip-pool ims1
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>  ip-pool ims2
+</code></pre></div>
+<p><img alt="aaa 下挂地址池" src="../assets/p0414.png" /></p>
+<p>语音地址池还要带 vpn：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ip-pool imsx
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a> vpn-instance voice
+</code></pre></div>
+<h3 id="120-查询-mac-地址">1.20 查询 MAC 地址</h3>
+<p>用户报障时手里通常只有 MAC 或账号，先在 BAS 上按 MAC 找到人，再顺着端口往下查：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有在线用户</td>
+<td><code>display access-user</code></td>
+</tr>
+<tr>
+<td>专线用户（domain dia）</td>
+<td><code>display access-user domain dia</code></td>
+</tr>
+<tr>
+<td>按 MAC 查用户信息</td>
+<td><code>display access-user mac-address 3485-112a-315c</code></td>
+</tr>
+<tr>
+<td>查某端口下有没有用户</td>
+<td><code>display access-user interface Eth-Trunk5.599</code></td>
+</tr>
+<tr>
+<td>查接口全部 MAC 表（9306）</td>
+<td><code>display mac-address dynamic GigabitEthernet 1/0/19</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="端口下用户" src="../assets/p0431.png" />
+<img alt="接口 MAC 表" src="../assets/p0437.png" /></p>
+<h3 id="121-其他问题">1.21 其他问题</h3>
+<p>日常遇到的两类零散问题：网关地址要换、静态用户绑定条目太多想简化。</p>
+<h4 id="网关在子接口上如何修改地址池">网关在子接口上，如何修改地址池</h4>
+<ol>
+<li>先关闭端口；</li>
+<li>删除原有 <code>ip address</code>：</li>
+</ol>
+<p><img alt="删除 ip address" src="../assets/p0449.png" /></p>
+<ol>
+<li>再按新地址正常添加。</li>
+</ol>
+<p><img alt="改地址池示例" src="../assets/p0444.png" /></p>
+<h4 id="使用-interface-list-简化绑定">使用 interface-list 简化绑定</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>static-user interface-list olt-guanli
+</code></pre></div>
+<p><img alt="interface-list" src="../assets/p0454.png" /></p>
+<p>查看对应的 list：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>display this        # 在对应视图下显示 list 内容
+</code></pre></div>
+<p>用 list 绑定：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>static-user xxxx xxxx gateway xxx interface-list olt-guanli detect
+</code></pre></div>
+<hr />
+<h2 id="第二章-idc-设备ce16808中兴-9908">第二章 IDC 设备（CE16808、中兴 9908）</h2>
+<h3 id="21-ip-分配配置">2.1 IP 分配配置</h3>
+<ol>
+<li>先看端口：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>display current-configuration interface xxx xxx
+</code></pre></div>
+<ol>
+<li>找到对应的 vlan，确认是不是客户名称；</li>
+<li>再看 vlanif：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>display current-configuration interface vlanif x
+</code></pre></div>
+<ol>
+<li>绑定静态 IP 路由：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>ip route-static &lt;初始IP&gt; &lt;终止IP&gt; vlanif x
+</code></pre></div>
+<ol>
+<li>开启 IPv4 出口允许：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>ip ip-prefix YC-IDC-IPV4 permit 122.191.114.64 26
+</code></pre></div>
+<blockquote>
+<p><strong>双机必做</strong>：记得再去另一台 16808 设备上开启同一条命令。</p>
+</blockquote>
+<p><img alt="另一台 16808 也要开启" src="../assets/p0478.png" /></p>
+<h3 id="22-关闭端口">2.2 关闭端口</h3>
+<p>先进口子，再 shutdown：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>interface xxx
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a> shutdown
+</code></pre></div>
+<p><img alt="shutdown 端口" src="../assets/p0485.png" /></p>
+<p>退出后如何确认确实关了？看接口状态：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>show interface xgei-0/1/0/31
+</code></pre></div>
+<p><img alt="确认端口已 down" src="../assets/p0489.png" /></p>
+<h3 id="23-查看丢包与出口流量">2.3 查看丢包与出口流量</h3>
+<p>判断 IDC 设备出口是否拥塞、链路是否健康，先看 ISIS 邻居状态，再看接口 CRC：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>display isis peer
+</code></pre></div>
+<p><img alt="isis peer 查看出口" src="../assets/p0494.png" /></p>
+<p>看 CRC 错误计数判断物理链路质量：</p>
+<p><img alt="看 crc" src="../assets/p0497.png" /></p>
+<h3 id="24-修改带宽">2.4 修改带宽</h3>
+<blockquote>
+<p>📌 原文此节只有标题、没有正文。IDC 侧的带宽调整同样通过 QoS 模板实现，具体参数写法参见 <a href="#37-修改专线带宽">3.7 修改专线带宽</a> 与 <a href="#39-带宽模板">3.9 带宽模板</a>。</p>
+</blockquote>
+<h3 id="25-中兴-9908">2.5 中兴 9908</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>show isis ad
+</code></pre></div>
+<p><img alt="show isis ad" src="../assets/p0511.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>show interface xxx
+</code></pre></div>
+<p><img alt="show interface" src="../assets/p0513.png" /></p>
+<hr />
+<h2 id="第三章-互联网专线">第三章 互联网专线</h2>
+<h3 id="31-确定-bas-设备">3.1 确定 BAS 设备</h3>
+<p><strong>方法 A：NE5000 查询（推荐）</strong></p>
+<p>在 BAS 的上联设备 NE5000 上敲：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>display ip routing-table xxx.xxx.xxx.xxx
+</code></pre></div>
+<p><img alt="NE5000 查路由" src="../assets/p0521.png" /></p>
+<p>查到对应接口后，再看接口信息：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>display current-configuration interface GigabitEthernet x/x/x
+</code></pre></div>
+<p><img alt="接口信息里能看到 BAS 名称" src="../assets/p0524.png" /></p>
+<p><strong>方法 B：经验判断</strong></p>
+<p>OLT 所在区域的 BAS 数量是固定的，一般都是就近接入。但<strong>建议用 NE5000 查询，最为准确</strong>。</p>
+<h3 id="32-在-bas-上找到对应的子接口">3.2 在 BAS 上找到对应的子接口</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>display ip routing-table 100.93.224.5
+</code></pre></div>
+<p><img alt="路由" src="../assets/p0533.png" /></p>
+<p>在 BAS 上看它怎么联到 OLT。几种可能：</p>
+<h4 id="情况一子接口对应智网">情况一：子接口对应智网</h4>
+<p>先去找<strong>最近的割接资料</strong>里的外标信息：</p>
+<p><img alt="割接资料" src="../assets/p0538.png" /></p>
+<p>先确定外标：</p>
+<p><img alt="确定外标" src="../assets/p0540.png" /></p>
+<p>再确定内标（方式是找未使用的）。子接口如果是<strong>专用的网管 vlan</strong>：</p>
+<p><img alt="网管 vlan 子接口" src="../assets/p0551.png" /></p>
+<p>看子接口使用情况：专线是 <strong>3800-4000</strong> 的范围，据此确定未使用的内标：</p>
+<p><img alt="专线内标范围" src="../assets/p0553.png" /></p>
+<p>再进入在用的子接口，找到可用的外标：</p>
+<p><img alt="可用外标" src="../assets/p0555.png" /></p>
+<h4 id="情况二接-9306-的设备">情况二：接 9306 的设备</h4>
+<p>先找到 93 对应的 BAS，再去对应的口子下穿透 vlan：</p>
+<p><img alt="93 穿透 vlan" src="../assets/p0558.png" /></p>
+<p>在 BAS 上先确定子接口（以 4008 子接口为例）：</p>
+<p><img alt="4008 子接口" src="../assets/p0560.png" /></p>
+<p>配置专线子接口数据：</p>
+<p><img alt="专线子接口配置" src="../assets/p0563.png" /></p>
+<p>再去 93 上找到对应的子接口，穿透 vlan：</p>
+<p><img alt="93 对应子接口" src="../assets/p0565.png" /></p>
+<p>配置如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>interface GigabitEthernet x/x/x
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a> description DIA,xxxxx:1,xxxxx
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a> port link-type access
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a> port default vlan xxxx
+</code></pre></div>
+<h3 id="33-配置专线子接口">3.3 配置专线子接口</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>interface Eth-Trunk x.xxxx
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a> description DIA,xxxx(专线名称),xxM(带宽):1,xxx(专线号码)
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a> qos-profile xxM inbound identifier none
+<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a> qos-profile xxM outbound identifier none
+<a id="__codelineno-69-5" name="__codelineno-69-5" href="#__codelineno-69-5"></a> user-vlan xxx(内标) qinq xxx(外标)
+<a id="__codelineno-69-6" name="__codelineno-69-6" href="#__codelineno-69-6"></a> bas
+<a id="__codelineno-69-7" name="__codelineno-69-7" href="#__codelineno-69-7"></a>  #
+<a id="__codelineno-69-8" name="__codelineno-69-8" href="#__codelineno-69-8"></a>  access-type layer2-subscriber default-domain authentication dia
+<a id="__codelineno-69-9" name="__codelineno-69-9" href="#__codelineno-69-9"></a>  authentication-method bind
+<a id="__codelineno-69-10" name="__codelineno-69-10" href="#__codelineno-69-10"></a>  ip-trigger
+<a id="__codelineno-69-11" name="__codelineno-69-11" href="#__codelineno-69-11"></a>  arp-trigger
+</code></pre></div>
+<h3 id="34-绑定静态-ip">3.4 绑定静态 IP</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>static-user dia,xxxx,xxm(接口描述):1,xxxx(专线号码) &lt;起始IP&gt; &lt;终止IP&gt; \
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>  gateway &lt;网关&gt; interface Eth-Trunkx.xx vlan xxxx qinq xxx domain-name dia detect
+</code></pre></div>
+<h3 id="35-查询绑定-ip-情况">3.5 查询绑定 IP 情况</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>display current-configuration | include xxxx
+</code></pre></div>
+<p><img alt="查询绑定" src="../assets/p0580.png" /></p>
+<h3 id="36-针对-ipv6-绑定">3.6 针对 IPv6 绑定</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>interface Eth-Trunk5.30483806
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a> description DIA,sxdgl,70M:1,711DIA14313086
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a> ipv6 enable
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a> ipv6 address auto link-local
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a> qos-profile 70M inbound identifier none
+<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a> qos-profile 70M outbound identifier none
+<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a> user-vlan 3806 qinq 3048
+<a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a> bas
+<a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a>  #
+<a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a>  access-type layer2-subscriber default-domain authentication dia
+<a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a>  authentication-method bind
+<a id="__codelineno-72-12" name="__codelineno-72-12" href="#__codelineno-72-12"></a>  authentication-method-ipv6 bind
+<a id="__codelineno-72-13" name="__codelineno-72-13" href="#__codelineno-72-13"></a>  ip-trigger
+<a id="__codelineno-72-14" name="__codelineno-72-14" href="#__codelineno-72-14"></a>  arp-trigger
+<a id="__codelineno-72-15" name="__codelineno-72-15" href="#__codelineno-72-15"></a>  ipv6-trigger
+<a id="__codelineno-72-16" name="__codelineno-72-16" href="#__codelineno-72-16"></a>  nd-trigger
+</code></pre></div>
+<h3 id="37-修改专线带宽">3.7 修改专线带宽</h3>
+<ol>
+<li>先把原始数据<strong>整段复制下来备份</strong>；</li>
+<li>关掉端口（顺序很重要：先 shutdown，否则改不动 qos）：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>interface xxx
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a> shutdown
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a> undo qos-profile inbound
+<a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a> undo qos-profile outbound
+<a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a> description DIA,jysc,100M:1,711DIA13835884
+<a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a> qos-profile 200M inbound identifier none
+<a id="__codelineno-73-7" name="__codelineno-73-7" href="#__codelineno-73-7"></a> qos-profile 200M outbound identifier none
+<a id="__codelineno-73-8" name="__codelineno-73-8" href="#__codelineno-73-8"></a> commit
+<a id="__codelineno-73-9" name="__codelineno-73-9" href="#__codelineno-73-9"></a> display this          # 核对
+<a id="__codelineno-73-10" name="__codelineno-73-10" href="#__codelineno-73-10"></a> undo shutdown
+</code></pre></div>
+<h3 id="38-删除子接口">3.8 删除子接口</h3>
+<p>前提：<strong>保证 IP 已解绑、端口已关闭</strong>。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>undo interface Eth-Trunk5.30043800
+</code></pre></div>
+<h3 id="39-带宽模板">3.9 带宽模板</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>qos-profile 200M
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a> car cir 204800 cbs 1870000 green pass red discard inbound
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a> car cir 204800 cbs 1870000 green pass red discard outbound
+</code></pre></div>
+<blockquote>
+<p><code>204800</code> = 200 × 1024（单位 kbps）。</p>
+</blockquote>
+<hr />
+<h2 id="第四章-olt">第四章 OLT</h2>
+<h3 id="41-登录方式与基础概念">4.1 登录方式与基础概念</h3>
+<p><strong>登录方式</strong>：SecureCRT、Telnet、网管。</p>
+<p><strong>Telnet 快速登录</strong>：选择"快速链接"，协议选 Telnet，输入 IP 即可。</p>
+<p><img alt="快速链接，协议选 Telnet" src="../assets/p0620.png" />
+<img alt="输入 IP" src="../assets/p0624.png" /></p>
+<p><strong>账号</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>厂商</th>
+<th>用户名</th>
+<th>密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中兴</td>
+<td><code>zte</code></td>
+<td><code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>华为</td>
+<td><code>huawei</code></td>
+<td><code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：连续输错 3 次会进入锁定状态，无法登录。</p>
+</blockquote>
+<p><strong>OLT 数据的四个要点</strong>（看懂工单的前提）：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOID / SN</td>
+<td>ONU 信息的索引，OLT 据此下发数据到对应 ONU</td>
+</tr>
+<tr>
+<td>OLT 的 IP</td>
+<td>OLT 的标识，可据此通过 telnet 远程访问</td>
+</tr>
+<tr>
+<td>PON 口</td>
+<td>对应具体的物理接口</td>
+</tr>
+<tr>
+<td>外层 VLAN（外标）</td>
+<td>BAS 到 OLT 与传输之间的通道（描述不准确，大致这样理解）</td>
+</tr>
+<tr>
+<td>内层 VLAN（内标）</td>
+<td>OLT 内区分相同外标的设备的标识</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="工单数据示例" src="../assets/p0644.png" /></p>
+<h4 id="华为-5800--5680t">华为 5800 / 5680T</h4>
+<p><strong>查看端口下已注册设备及配置</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>display current-configuration port 0/3/4
+</code></pre></div>
+<p>可以查看 0/3/4 这个 PON 口下全部 ONU 信息，通过显示的 LOID 或宽带账号找到对应的 ONT 编号。</p>
+<p><img alt="端口下全部 ONU" src="../assets/p0650.png" /></p>
+<p><strong>查看 ONU 配置</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>display current-configuration ont 0/2/1 1
+</code></pre></div>
+<p><strong>查看未注册 ONU</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>display ont autofind all
+</code></pre></div>
+<p><strong>查看 ONU 数据信息</strong>（通过 LOID/SN 查 ONT 信息）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>display ont info by-loid T009063C0G0210000P
+</code></pre></div>
+<p><img alt="按 LOID 查 ONT" src="../assets/p0662.png" /></p>
+<p>知道编号后：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>display current-configuration ont xx x
+</code></pre></div>
+<p>即可看具体数据。</p>
+<h4 id="中兴-c620--c320">中兴 C620 / C320</h4>
+<p><strong>查看 ONU 状态</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>show gpon onu state gpon-olt_1/2/1
+</code></pre></div>
+<p><strong>查看 ONU 数据配置</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>show running-config-interface gpon_onu-1/1/9:2
+</code></pre></div>
+<p><img alt="ONU 数据配置" src="../assets/p0743.png" /></p>
+<p><strong>查看端口下已注册设备信息</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>show running-config-interface gpon_olt-1/7/15
+</code></pre></div>
+<p><img alt="端口下已注册设备" src="../assets/p0746.png" /></p>
+<p><strong>通过 SN / LOID 查询</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>show gpon onu by sn
+</code></pre></div>
+<p><img alt="按 SN 查 ONU" src="../assets/p0751.png" />
+<img alt="查询结果" src="../assets/p0752.png" /></p>
+<p><strong>LLDP</strong>（找上联口，两种方式）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>show lldp entry interface xgei-x/x/x        # 方式 A：先进口子再点
+<a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>show lldp internal                          # 方式 B
+</code></pre></div>
+<h3 id="42-宽带上行模板dba修改">4.2 宽带上行模板（DBA）修改</h3>
+<p><strong>现象</strong>：宽带测速上不去、上行不够，需要提高 ONU 的保证带宽/最大带宽。</p>
+<p><strong>第 1 步：查看现状</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>display current-configuration          # 看全局配置，知道对应 DBA 速率
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a>display current-configuration ont xxxxx
+</code></pre></div>
+<p><img alt="ONU 配置" src="../assets/p0676.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>display current-configuration
+</code></pre></div>
+<p><img alt="全局配置详情" src="../assets/p0679.png" /></p>
+<p>下拉找到对应的线路信息，关键词 <code>ont-lineprofile</code>：</p>
+<p><img alt="ont-lineprofile" src="../assets/p0683.png" /></p>
+<p>上拉，在配置详情里找到 <strong>DBA 模板</strong>相关信息，看看上行的极限：</p>
+<p><img alt="DBA 模板信息" src="../assets/p0686.png" /></p>
+<p><strong>参数含义</strong>：</p>
+<ul>
+<li><code>assure</code>：保证带宽，至少满足的带宽值；</li>
+<li><code>max</code>：最大带宽值。</li>
+</ul>
+<p><strong>第 2 步：修改或新建 DBA 模板</strong></p>
+<p>修改已有 DBA 模板：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a>dba-profile modify profile-id x
+</code></pre></div>
+<p><img alt="修改 DBA 模板" src="../assets/p0694.png" /></p>
+<p>新建 DBA 模板（保证 10M、最大 30M）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a>dba-profile add type3 assure 10240 max 30720
+</code></pre></div>
+<p><img alt="新建 DBA 模板" src="../assets/p0699.png" /></p>
+<p><strong>第 3 步：新建线路模板并改 DBA 引用</strong></p>
+<blockquote>
+<p>关键原则：<strong>不要直接改在用的线路模板</strong>。先复制一份对应的模板，只改 DBA 引用，这样不会影响在用用户。</p>
+</blockquote>
+<p>先找到 ONU 的线路模板信息：</p>
+<p><img alt="ONU 线路模板" src="../assets/p0705.png" /></p>
+<p>新建模板（黄色部分要不重复，蓝色为名称）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>ont-lineprofile gpon profile-id 20 profile-name &quot;ceshi&quot;
+<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a> omcc encrypt off
+<a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a> tcont 1 dba-profile-id 8               # 关键修改项：指向新的 DBA 模板
+<a id="__codelineno-91-4" name="__codelineno-91-4" href="#__codelineno-91-4"></a> gem add 1 eth tcont 1 encrypt off
+<a id="__codelineno-91-5" name="__codelineno-91-5" href="#__codelineno-91-5"></a> gem add 2 eth tcont 1 encrypt off
+<a id="__codelineno-91-6" name="__codelineno-91-6" href="#__codelineno-91-6"></a> gem add 3 eth tcont 1 encrypt off
+<a id="__codelineno-91-7" name="__codelineno-91-7" href="#__codelineno-91-7"></a> gem mapping 1 1 vlan 2000
+<a id="__codelineno-91-8" name="__codelineno-91-8" href="#__codelineno-91-8"></a> gem mapping 2 2 vlan 12
+<a id="__codelineno-91-9" name="__codelineno-91-9" href="#__codelineno-91-9"></a> gem mapping 3 1 vlan 3807
+<a id="__codelineno-91-10" name="__codelineno-91-10" href="#__codelineno-91-10"></a> gem mapping 3 3 vlan 3
+<a id="__codelineno-91-11" name="__codelineno-91-11" href="#__codelineno-91-11"></a> gem mapping 3 4 vlan 3815
+<a id="__codelineno-91-12" name="__codelineno-91-12" href="#__codelineno-91-12"></a> commit
+<a id="__codelineno-91-13" name="__codelineno-91-13" href="#__codelineno-91-13"></a> quit
+</code></pre></div>
+<blockquote>
+<p>以上语句都需要有空格才能写入。</p>
+</blockquote>
+<p><strong>第 4 步：把 ONU 挂到新模板上</strong></p>
+<p>进对应的 PON 口设置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a>interface gpon 0/1
+<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a> ont modify x xx ont-lineprofile-id 11
+</code></pre></div>
+<p><img alt="进 PON 口" src="../assets/p0734.png" />
+<img alt="ont modify 切换模板" src="../assets/p0736.png" /></p>
+<h3 id="43-新建线路模板中兴">4.3 新建线路模板（中兴）</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>profile tcont PCDN type 3 assured 10240 maximum 30720
+<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a>tcont 1 name Tl1DefaultCreate profile PCDN
+</code></pre></div>
+<p><img alt="新建线路模板" src="../assets/p0767.png" /></p>
+<p>查看线路模板：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>gpon
+<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>show this
+</code></pre></div>
+<p><img alt="查看线路模板" src="../assets/p0774.png" /></p>
+<h3 id="44-故障处理流程">4.4 故障处理流程</h3>
+<p>报障先分业务类型，不同业务查的点完全不同：宽带看在线状态和 vlan，语音看 service-port。按下面的顺序排，能最快定位到是线路、光路还是数据问题。</p>
+<h4 id="441-宽带不通">4.4.1 宽带不通</h4>
+<p><strong>第 1 步：查 LOID 是否在线</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>show gpon onu state gpon_olt-1/1/2
+<a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>show gpon state gpon-olt_1/8/6
+</code></pre></div>
+<p><img alt="PON 口下设备在线信息" src="../assets/p0778.png" />
+<img alt="在线状态" src="../assets/p0783.png" /></p>
+<p>指令能看到 PON 口下设备的在线信息。<strong>如果不在线，联系现场师傅重启设备</strong>。</p>
+<p><strong>第 2 步：在线后进设备配置界面，检查是不是外标 vlan 问题</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>show mac vlan xxxx              # 中兴
+<a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>display mac-address vlan xxx    # 华为
+</code></pre></div>
+<p>查 vlan 对应的 mac 是否存在。</p>
+<h4 id="442-固话语音不通">4.4.2 固话（语音）不通</h4>
+<p><strong>如果是已在使用的语音不通</strong>，先查 ONU 状态，然后确认这行数据存在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>user-vlan 50 vlan 50 svlan xxx
+</code></pre></div>
+<p>常见原因：<strong>svlan 对不上 IMS 业务的外标</strong>。</p>
+<p><img alt="svlan 与外标不匹配" src="../assets/p0798.png" /></p>
+<p>需要修改该项：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a>interface gpon-onu_1/16/12:14
+<a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a> no service-port 5
+<a id="__codelineno-98-3" name="__codelineno-98-3" href="#__codelineno-98-3"></a> service-port 5 vport 1 user-vlan 50 vlan 50 new-cos 5 svlan 900
+<a id="__codelineno-98-4" name="__codelineno-98-4" href="#__codelineno-98-4"></a> service-port 5 description Tl1OpVlan50
+</code></pre></div>
+<p><strong>第 3 步：ping 核心网验证</strong></p>
+<p>固话测试 IP（核心网软交换服务器，<strong>ping 通说明语音数据能送达核心网，接入层就没问题了</strong>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a>100.47.1.53
+</code></pre></div>
+<p><img alt="ping 100.47.1.53" src="../assets/p0805.png" /></p>
+<p><strong>只要 ping 3 次都正常</strong>，就可以去找交换侧排查。</p>
+<h3 id="45-修改-onu-数据中兴-c-系">4.5 修改 ONU 数据（中兴 C 系）</h3>
+<p><strong>找未注册设备</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a>show gpon onu uncfg
+</code></pre></div>
+<p><img alt="未配置 ONU" src="../assets/p0818.png" /></p>
+<p><strong>绑定 vlan、网口</strong>：找到对应的 PON 口，进入 ONU 管理模式（以公司的 ONU 为例）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a>pon-onu-mng gpon-onu_1/1/3:45
+<a id="__codelineno-101-2" name="__codelineno-101-2" href="#__codelineno-101-2"></a> server 1 gemport 1 vlan 3000
+<a id="__codelineno-101-3" name="__codelineno-101-3" href="#__codelineno-101-3"></a> server 2 gemport 1 vlan 1350
+<a id="__codelineno-101-4" name="__codelineno-101-4" href="#__codelineno-101-4"></a> vlan port eth_0/1 mode tag 1350
+</code></pre></div>
+<p><img alt="ONU 管理模式配置" src="../assets/p0826.png" /></p>
+<h4 id="特殊拨号上网的数据制作vlan-599">特殊拨号上网的数据制作（vlan 599）</h4>
+<p>手动做数据，形态是把内标 <code>49</code>/<code>48</code> 映射到 <code>vlan 599</code>，共用一个外标 <code>svlan 543</code>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>interface vport-1/1/14.6:1
+<a id="__codelineno-102-2" name="__codelineno-102-2" href="#__codelineno-102-2"></a> service-port 1 user-vlan 49 vlan 599 new-cos 0 svlan 543 new-cos 0
+<a id="__codelineno-102-3" name="__codelineno-102-3" href="#__codelineno-102-3"></a> service-port 2 user-vlan 48 vlan 48 new-cos 0 svlan 543 new-cos 0
+<a id="__codelineno-102-4" name="__codelineno-102-4" href="#__codelineno-102-4"></a> service-port 2 description Tl1OpVlan48
+<a id="__codelineno-102-5" name="__codelineno-102-5" href="#__codelineno-102-5"></a> qos traffic-policy DOWN-20M direction egress
+</code></pre></div>
+<p><img alt="手动数据制作" src="../assets/p0830.png" /></p>
+<p>这种需要到相应 BAS 上把内外标都加上。</p>
+<h3 id="46-华为改-iptv-外标">4.6 华为改 IPTV 外标</h3>
+<p><strong>先删掉原用户外标</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a>igmp user delete smart-vlan 3686
+</code></pre></div>
+<p><img alt="删除原外标" src="../assets/p0838.png" /></p>
+<p><strong>再添加智网外标</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a>igmp user add smart-vlan 3621 no-auth
+</code></pre></div>
+<p><img alt="添加智网外标" src="../assets/p0841.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a>multicast-vlan 3601
+<a id="__codelineno-105-2" name="__codelineno-105-2" href="#__codelineno-105-2"></a>igmp multicast-vlan member smart-vlan 3621
+</code></pre></div>
+<p><img alt="multicast-vlan 成员" src="../assets/p0846.png" /></p>
+<h3 id="47-添加上联口外标">4.7 添加上联口外标</h3>
+<p>新开业务或割接后，OLT 上联口没有放行对应外标 vlan，业务就不通。做法是先确定上联口，再把这个 vlan 加进去。</p>
+<h4 id="中兴">中兴</h4>
+<p>先看 LLDP 找到上联口，再进上联口（一般是 <code>smartgroup</code> 聚合口）添加 vlan tag：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a>interface smartgroup1
+<a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a> switchport vlan 900 tag
+</code></pre></div>
+<p><img alt="switchport vlan 900 tag" src="../assets/p0857.png" /></p>
+<p>加完用 <code>show this</code> 核对，能看到 <code>switchport vlan 2,521,900,2623 tag</code> 这种形态：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a>switchport mode hybrid
+<a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a>switchport vlan 2,521,900,2623 tag
+<a id="__codelineno-107-3" name="__codelineno-107-3" href="#__codelineno-107-3"></a>switchport vlan 3260,3601 tag
+</code></pre></div>
+<h4 id="华为">华为</h4>
+<p>直接在 config 模式下把 vlan 声明成 smart，再把 vlan 打到上联口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a>vlan 2 smart
+<a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a>vlan 3601 smart
+<a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a>port vlan 2 0/10 0
+<a id="__codelineno-108-4" name="__codelineno-108-4" href="#__codelineno-108-4"></a>port vlan 3601 0/10 0
+</code></pre></div>
+<p><img alt="华为 config 模式添加" src="../assets/p0861.png" /></p>
+<h3 id="48-查看光衰">4.8 查看光衰</h3>
+<p>ONU 掉线、频繁闪断时先看光功率：收光在 -8 到 -27 dBm 之间算正常，超出范围就是光路问题（脏、弯折、分光比过大）。</p>
+<h4 id="中兴_1">中兴</h4>
+<p>C300：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a>show interface optical-module-info gei_1/3/1
+</code></pre></div>
+<p>C600：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a>show optical-module-info xgei-1/4/1
+</code></pre></div>
+<p><img alt="C300 光衰" src="../assets/p0870.png" />
+<img alt="C600 光衰" src="../assets/p0871.png" /></p>
+<p>判读：<strong>RX 是收光，TX 是发光</strong>。</p>
+<h4 id="华为_1">华为</h4>
+<p>进 MPU 单板：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a>interface mpu x
+<a id="__codelineno-111-2" name="__codelineno-111-2" href="#__codelineno-111-2"></a>display port ddm-info x
+</code></pre></div>
+<p><img alt="单 ONU 光衰" src="../assets/p0889.png" /></p>
+<p><strong>华为 OLT 单 ONU 光衰</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a>interface gpon 0/5
+<a id="__codelineno-112-2" name="__codelineno-112-2" href="#__codelineno-112-2"></a>display ont optical-info 0 5
+</code></pre></div>
+<blockquote>
+<p>实拍截图见 <a href="#94-案例四看华为-olt-的-onu-光衰">9.4 案例四</a>。</p>
+</blockquote>
+<h3 id="49-端口自适应速率">4.9 端口自适应速率</h3>
+<p><img alt="端口自适应速率" src="../assets/p0878.png" /></p>
+<p>关闭端口速率自适应：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a>no negotiation auto
+</code></pre></div>
+<blockquote>
+<p>要<strong>保证与传输那侧保持一致</strong>。</p>
+</blockquote>
+<h3 id="410-查看端口错误包">4.10 查看端口错误包</h3>
+<p>怀疑物理链路有问题（丢包、协商异常）时，看端口的错误包计数：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a>display port statistics 0
+</code></pre></div>
+<p><img alt="错误包统计" src="../assets/p0894.png" /></p>
+<h3 id="411-链路聚合与相关协议">4.11 链路聚合与相关协议</h3>
+<p>OLT 上联口带宽不够时要和交换机做链路聚合（LACP），做完还要在上联口启用 PPPoE、IPTV、组播几个代理协议，否则业务不通。不同型号的配置入口不一样，分开记。</p>
+<h4 id="4111-c620">4.11.1 C620</h4>
+<p>需要将 OLT 添加 LACP 协议：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>lacp
+<a id="__codelineno-115-2" name="__codelineno-115-2" href="#__codelineno-115-2"></a>interface smartgroup1
+</code></pre></div>
+<p><img alt="lacp / smartgroup" src="../assets/p0902.png" /></p>
+<p>智网的 LACP 协议模式选 802.3ad：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-116-1" name="__codelineno-116-1" href="#__codelineno-116-1"></a>lacp mode 802.3ad
+</code></pre></div>
+<p><img alt="lacp mode 802.3ad" src="../assets/p0905.png" /></p>
+<p>智网对应的子接口需要启动 LACP：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-117-1" name="__codelineno-117-1" href="#__codelineno-117-1"></a>interface xx
+<a id="__codelineno-117-2" name="__codelineno-117-2" href="#__codelineno-117-2"></a>smartgroup 1 mode active
+</code></pre></div>
+<p><img alt="smartgroup mode active" src="../assets/p0909.png" /></p>
+<p><strong>启动相关协议</strong>：</p>
+<p>添加 PPPoE：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a>pppoe-intermediate-agent vlan xxx
+</code></pre></div>
+<p><img alt="pppoe-intermediate-agent" src="../assets/p0915.png" /></p>
+<p>添加 IPTV：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>dhcpv4-l2-relay-agent vlan xxx
+</code></pre></div>
+<p>添加 IGMP：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-120-1" name="__codelineno-120-1" href="#__codelineno-120-1"></a>vlan x
+<a id="__codelineno-120-2" name="__codelineno-120-2" href="#__codelineno-120-2"></a>igmp span-vlan
+</code></pre></div>
+<p><img alt="igmp span-vlan" src="../assets/p0922.png" /></p>
+<p><strong>检查</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a>show lacp internal
+</code></pre></div>
+<p><img alt="show lacp internal" src="../assets/p0925.png" /></p>
+<p>如果为 <code>active</code>，说明 LACP 已激活。</p>
+<blockquote>
+<p>再改完 BAS 后，正式接入智网。</p>
+</blockquote>
+<p><strong>继续检查两代理</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a>show pppoe-intermediate-agent vlan all
+<a id="__codelineno-122-2" name="__codelineno-122-2" href="#__codelineno-122-2"></a>show dhcpv4-l2-relay-agent vlan all
+</code></pre></div>
+<p><img alt="pppoe 代理" src="../assets/p0930.png" />
+<img alt="dhcp 代理" src="../assets/p0932.png" /></p>
+<p><strong>之后需要解绑 IGMP 的接口，替换为 sm1</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a>show igmp mvlan 3601
+</code></pre></div>
+<p><img alt="show igmp mvlan" src="../assets/p0935.png" /></p>
+<p>此处注意两点：</p>
+<ol>
+<li>接口在<strong>割接后需要为 <code>sm1</code></strong>；</li>
+<li>模式<strong>必须为 v2</strong> 才能组播。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a>igmp mvlan 3601
+<a id="__codelineno-124-2" name="__codelineno-124-2" href="#__codelineno-124-2"></a>no source-port xgei-x/x/x
+<a id="__codelineno-124-3" name="__codelineno-124-3" href="#__codelineno-124-3"></a>source-port smartgroup1
+</code></pre></div>
+<p><img alt="替换为 smartgroup1" src="../assets/p0944.png" /></p>
+<h4 id="4112-c300">4.11.2 C300</h4>
+<p>无论是智网上联还是 950B 上联，方式是一样的，但 <strong>C300 起聚合的方式不同</strong>：</p>
+<p><code>sm</code> 需要在口子设置 vlan 的同时添加协议。先进 interface、<code>sm1</code>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a>smartgroup mode 802.3ad
+</code></pre></div>
+<p>再进 interface <code>xgexxx</code>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a>smartgroup 1 mode active
+</code></pre></div>
+<p><strong>不用改 iptv 与 dhcp</strong>，启动一下 igmp 就行了。指令是<strong>先删单口</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a>no igmp mvlan 3601 source-port gx/x/x
+</code></pre></div>
+<p>绑定智网聚合口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a>igmp mvlan 3601 source-port sm1
+</code></pre></div>
+<p><img alt="绑定 sm1" src="../assets/p0963.png" /></p>
+<p>发现写入之后，检查是否成功写入。</p>
+<h4 id="4113-c-系-olt-清除全部-mac-地址">4.11.3 C 系 OLT 清除全部 MAC 地址</h4>
+<p>割接后 MAC 表里还留着旧口学到的地址、导致流量走错口时，可以一次性清空整机动态 MAC 表让它重新学习：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a>mac delete all
+</code></pre></div>
+<h4 id="4114-华为-ma5680t-设置链路聚合">4.11.4 华为 MA5680T 设置链路聚合</h4>
+<p>在 MA5680T 配置模式下，通过 <code>link-aggregation</code> 设置链路聚合，聚合模式为 <code>lacp-static</code>，<strong>对端交换机也要与该模式一致，否则协商不起来</strong>。<code>0/19 0</code> 为主聚合口，<code>0/20 0</code> 为成员端口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a>link-aggregation 0/19 0 0/20 0 egress-ingress workmode lacp-static
+</code></pre></div>
+<p><strong>如果设备上已存在聚合组，需要扩容聚合链路</strong>（<code>0/19/0</code> 主聚合链路，<code>0/19 1</code> 为新扩容链路）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a>link-aggregation add-member 0/19/0 0/19 1
+</code></pre></div>
+<p><strong>查询聚合模式</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-132-1" name="__codelineno-132-1" href="#__codelineno-132-1"></a>display link-aggregation all          # 查看该 OLT 所有聚合组
+<a id="__codelineno-132-2" name="__codelineno-132-2" href="#__codelineno-132-2"></a>display link-aggregation 0/19/0       # 查看具体聚合组
+</code></pre></div>
+<p>返回示例：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-133-1" name="__codelineno-133-1" href="#__codelineno-133-1"></a>link aggregation description: 0/19/01
+<a id="__codelineno-133-2" name="__codelineno-133-2" href="#__codelineno-133-2"></a>link aggregation mode: egress-ingress
+<a id="__codelineno-133-3" name="__codelineno-133-3" href="#__codelineno-133-3"></a>work mode:             lacp-static
+<a id="__codelineno-133-4" name="__codelineno-133-4" href="#__codelineno-133-4"></a>max link number:       -
+<a id="__codelineno-133-5" name="__codelineno-133-5" href="#__codelineno-133-5"></a>master port:           0/19/0
+<a id="__codelineno-133-6" name="__codelineno-133-6" href="#__codelineno-133-6"></a>-------------------------------------------------------------------------
+<a id="__codelineno-133-7" name="__codelineno-133-7" href="#__codelineno-133-7"></a>F/S                   Port List
+<a id="__codelineno-133-8" name="__codelineno-133-8" href="#__codelineno-133-8"></a>-------------------------------------------------------------------------
+<a id="__codelineno-133-9" name="__codelineno-133-9" href="#__codelineno-133-9"></a>0/19                  0,1
+<a id="__codelineno-133-10" name="__codelineno-133-10" href="#__codelineno-133-10"></a>-------------------------------------------------------------------------
+</code></pre></div>
+<h4 id="4115-华为-ma5800-设置链路聚合">4.11.5 华为 MA5800 设置链路聚合</h4>
+<p>把 9 槽位 0 端口与 10 槽位 0 端口设置成聚合组，主聚合口 <code>0/9/0</code>，工作模式 <code>lacp-static</code>，与交换机要一致：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-134-1" name="__codelineno-134-1" href="#__codelineno-134-1"></a>link-aggregation 0/9 0 0/10 0 egress-ingress workmode lacp-static
+</code></pre></div>
+<p>已存在聚合组时要增加聚合端口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-135-1" name="__codelineno-135-1" href="#__codelineno-135-1"></a>link-aggregation add-member 0/9/0 0/9 1
+</code></pre></div>
+<p><strong>检查是否设置成功</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-136-1" name="__codelineno-136-1" href="#__codelineno-136-1"></a>display link-aggregation all          # 该 OLT 下所有聚合组
+<a id="__codelineno-136-2" name="__codelineno-136-2" href="#__codelineno-136-2"></a>display link-aggregation 0/9/0        # 主端口为 0/9/0 的聚合组
+</code></pre></div>
+<p>返回示例：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a>Master    Link aggregation    Port  Work        Max          Least
+<a id="__codelineno-137-2" name="__codelineno-137-2" href="#__codelineno-137-2"></a>port      mode                NUM   mode        link number  link number
+<a id="__codelineno-137-3" name="__codelineno-137-3" href="#__codelineno-137-3"></a>-------------------------------------------------------------------------
+<a id="__codelineno-137-4" name="__codelineno-137-4" href="#__codelineno-137-4"></a>0 /9 /0   egress-ingress         2  lacp-static           -            -
+<a id="__codelineno-137-5" name="__codelineno-137-5" href="#__codelineno-137-5"></a>-------------------------------------------------------------------------
+<a id="__codelineno-137-6" name="__codelineno-137-6" href="#__codelineno-137-6"></a>Total: 1 link aggregation(s)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-138-1" name="__codelineno-138-1" href="#__codelineno-138-1"></a>link aggregation description: 0/9/0~1
+<a id="__codelineno-138-2" name="__codelineno-138-2" href="#__codelineno-138-2"></a>link aggregation mode: egress-ingress
+<a id="__codelineno-138-3" name="__codelineno-138-3" href="#__codelineno-138-3"></a>work mode:             lacp-static
+<a id="__codelineno-138-4" name="__codelineno-138-4" href="#__codelineno-138-4"></a>max link number:       -
+<a id="__codelineno-138-5" name="__codelineno-138-5" href="#__codelineno-138-5"></a>least link number:     -
+<a id="__codelineno-138-6" name="__codelineno-138-6" href="#__codelineno-138-6"></a>master port:           0/9/0            # 聚合主端口
+<a id="__codelineno-138-7" name="__codelineno-138-7" href="#__codelineno-138-7"></a>-------------------------------------------------------------------------
+<a id="__codelineno-138-8" name="__codelineno-138-8" href="#__codelineno-138-8"></a>F/S                   Port List
+<a id="__codelineno-138-9" name="__codelineno-138-9" href="#__codelineno-138-9"></a>-------------------------------------------------------------------------
+<a id="__codelineno-138-10" name="__codelineno-138-10" href="#__codelineno-138-10"></a>0/9                   0,1
+<a id="__codelineno-138-11" name="__codelineno-138-11" href="#__codelineno-138-11"></a>-------------------------------------------------------------------------
+</code></pre></div>
+<h3 id="412-华为改上联口-vlan">4.12 华为改上联口 VLAN</h3>
+<p><strong>透传 vlan</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-139-1" name="__codelineno-139-1" href="#__codelineno-139-1"></a>vlan xxx smart
+</code></pre></div>
+<p><strong>对固定的 vlan 需要 stacking</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-140-1" name="__codelineno-140-1" href="#__codelineno-140-1"></a>vlan attrib 123 stacking
+</code></pre></div>
+<p><strong>端口放行</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-141-1" name="__codelineno-141-1" href="#__codelineno-141-1"></a>port vlan xxx 0/x x
+</code></pre></div>
+<p><img alt="port vlan" src="../assets/p1057.png" /></p>
+<h3 id="413-华为打开上联口">4.13 华为打开上联口</h3>
+<p>新开的上联口默认是 <code>shutdown</code> 状态，要进主控板（<code>mcu</code>）把它打开：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-142-1" name="__codelineno-142-1" href="#__codelineno-142-1"></a>interface mcu 0/2
+<a id="__codelineno-142-2" name="__codelineno-142-2" href="#__codelineno-142-2"></a>no shutdown
+</code></pre></div>
+<p><img alt="打开上联口" src="../assets/p1060.png" /></p>
+<h3 id="414-华为组播">4.14 华为组播</h3>
+<p><strong>先关闭组播模式</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-143-1" name="__codelineno-143-1" href="#__codelineno-143-1"></a>igmp mode off
+</code></pre></div>
+<p><img alt="igmp mode off" src="../assets/p1067.png" /></p>
+<p><strong>再删掉之前的 vlan</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-144-1" name="__codelineno-144-1" href="#__codelineno-144-1"></a>undo igmp uplink-port 0/3/1
+</code></pre></div>
+<p><strong>添加新的 vlan</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-145-1" name="__codelineno-145-1" href="#__codelineno-145-1"></a>igmp uplink-port 0/3/1
+</code></pre></div>
+<p><strong>修改组播模式</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>igmp mode proxy
+</code></pre></div>
+<p><img alt="igmp mode proxy" src="../assets/p1075.png" /></p>
+<h3 id="415-用户数据变更">4.15 用户数据变更</h3>
+<p>割接或改业务时，经常要批量动一整片 ONU 的 vlan 和位置。网管上有现成的批量入口，比一台台敲命令快得多，下面三种是常用的。</p>
+<h4 id="4151-中兴修改-vlan批量改-s-vid">4.15.1 中兴修改 vlan（批量改 S-VID）</h4>
+<p>在网管左侧设备树上<strong>右键 → 更多 → ONU 业务模板管理 → Service Port 网络侧 S-VID 批量修改</strong>：</p>
+<p><img alt="右键 → 更多 → ONU 业务模板管理" src="../assets/p1078.png" /></p>
+<p>弹出批量修改窗口，选择<strong>场景</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位置</td>
+<td><code>网元级别</code> / <code>PON口级别</code></td>
+</tr>
+<tr>
+<td>条件</td>
+<td><code>网络侧 S-VID</code> / <code>用户 VID</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Service Port 网络侧 S-VID 批量修改" src="../assets/p1082.png" /></p>
+<p>点<strong>新建</strong>，填转换规则：<code>网络侧 S-VID</code> 填<strong>割接前</strong>的 vlan，<code>修改后网络侧 S-VID</code> 填<strong>割接后</strong>的 vlan。</p>
+<p><img alt="新建网络侧 S-VID 修改规则" src="../assets/p1083.png" /></p>
+<blockquote>
+<p>注意窗口下方提示：<code>网络侧 S-VID = (0-4094)</code>；<code>0</code> 表示没有配置网络侧 S-VID；多个 S-VID 用<strong>逗号</strong>分隔；支持范围输入（如 <code>1,3-8,16</code>）；前面加 <code>!</code> 表示<strong>不包括</strong>该 S-VID。</p>
+</blockquote>
+<h4 id="4152-迁移数据pon-业务割接--maccut">4.15.2 迁移数据（PON 业务割接 / MacCut）</h4>
+<p>菜单位置：<strong>维护 → PON 业务割接（MacCut）</strong>：</p>
+<p><img alt="维护 → PON 业务割接" src="../assets/p1086.png" /></p>
+<p>打开后选 ONU 模式，通过左上"操作 → 增加源 PON 口 / 指定目的 PON 口"来配置割接：</p>
+<p><img alt="PON 业务割接（MacCut）ONU 模式" src="../assets/p1087.png" /></p>
+<p>在"指定目的 PON 口"里逐级点开 <strong>EMS 服务器 → 地市 → 基站 → 板卡</strong>，选板卡下的目的 PON 口：</p>
+<p><img alt="指定目的 PON 口" src="../assets/p1090_1.png" /></p>
+<p>窗口列表会显示每条割接的<strong>迁移状态</strong>（迁移成功 / 迁移失败）与待迁移 ONU 数，确认无误后点"开始"执行。</p>
+<h4 id="4153-telnet-设定迁移失败时用-telnet">4.15.3 telnet 设定（迁移失败时用 telnet）</h4>
+<p>迁移失败的网元，右键 → <strong>修改网元</strong>：</p>
+<p><img alt="右键 → 修改网元" src="../assets/p1096.png" /></p>
+<p>在"统一管理-修改"里切换到<strong>命令行参数</strong>页，协议选 <strong>Telnet</strong>，端口 <code>23</code>，填入用户名 <code>zte</code> 和密码后点"修改"：</p>
+<p><img alt="统一管理-修改，命令行为 Telnet" src="../assets/p1098.png" /></p>
+<h4 id="4154-华为网管批量修改业务外标">4.15.4 华为网管批量修改业务外标</h4>
+<ol>
+<li>选择对应 OLT 的 ServicePort，点击查找：</li>
+</ol>
+<p><img alt="选择 ServicePort 查找" src="../assets/p1104.png" /></p>
+<ol>
+<li>点击 VLAN ID 信息排序：</li>
+</ol>
+<p><img alt="按 VLAN ID 排序" src="../assets/p1109.png" /></p>
+<ol>
+<li>选择要修改的外标 VLAN，右键选择"平移 VLAN ID"：</li>
+</ol>
+<p><img alt="右键平移 VLAN ID" src="../assets/p1111.png" /></p>
+<blockquote>
+<p>VLAN ID 选择要平移的 VLAN。<strong>注意原 VLAN 和新 VLAN 的属性必须一致，宽带和 IPTV 的 VLAN 属性必须为 <code>Stacking</code></strong>。</p>
+</blockquote>
+<p><strong>PS</strong>：如果外标修改失败，可以先手动改一个，让该外标对应的上联口获取到 MAC，再去网管改其余数据。</p>
+<p><strong>IPTV 还需要设定 igmp</strong>：先删 btv：</p>
+<p><img alt="先删 btv" src="../assets/p1124.png" /></p>
+<p>删除后在网管上修改，改完后再加上 btv：</p>
+<p><img alt="改完加 btv" src="../assets/p1134.png" /></p>
+<h3 id="416-新建网管对象中兴">4.16 新建网管对象（中兴）</h3>
+<p>在 EMS 设备树里，<strong>右键地市/区县 → 新建对象 → 新建有线网元</strong>：</p>
+<p><img alt="右键 → 新建对象 → 新建有线网元" src="../assets/p1138.png" /></p>
+<p>在"统一管理-新建"里选择网元类型（PON OLT 产品下选具体型号，如 <code>C620</code>、<code>C600</code>、<code>C300</code>）：</p>
+<p><img alt="选择设备类型" src="../assets/p1140.png" /></p>
+<p>填基本参数：网元名称、网元 IP、子网掩码；<strong>读写团体名统一填 <code>YCLT_public</code></strong>，SNMP 版本选 <code>v3</code>，端口 <code>161</code>。</p>
+<p><img alt="读写团体名 YCLT_public" src="../assets/p1142.png" /></p>
+<h3 id="417-其他相关指令">4.17 其他相关指令</h3>
+<p>平时零散用到、但不属于某一条业务流程的几条命令，集中放这里。</p>
+<h4 id="4171-c320-板卡启用万兆">4.17.1 C320 板卡启用万兆</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-147-1" name="__codelineno-147-1" href="#__codelineno-147-1"></a>show subcard
+</code></pre></div>
+<blockquote>
+<p><code>UCDC/3</code> 万兆口 <code>cfg</code> 模式为 <strong>3</strong> 才是万兆状态。</p>
+</blockquote>
+<p><img alt="show subcard" src="../assets/p1146.png" /></p>
+<p><strong>先删</strong>（<code>slotno</code> 对应的是板卡）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-148-1" name="__codelineno-148-1" href="#__codelineno-148-1"></a>del-subcard slotno 3 subcardno 1
+</code></pre></div>
+<p>确认：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-149-1" name="__codelineno-149-1" href="#__codelineno-149-1"></a>Confirm to delete subcard? [yes/no]: y
+</code></pre></div>
+<p><strong>再添加</strong>（以 <code>UCDC/3</code> 模式）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-150-1" name="__codelineno-150-1" href="#__codelineno-150-1"></a>add-subcard slotno 3 subcardno 1 UCDC/3
+</code></pre></div>
+<p><strong>确认是否识别成功</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-151-1" name="__codelineno-151-1" href="#__codelineno-151-1"></a>show subcard slotno 3
+</code></pre></div>
+<p><strong>查看同步状态</strong>（主从数据同步，<code>ZXAN#</code> 即 <code>#</code> 模式下）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-152-1" name="__codelineno-152-1" href="#__codelineno-152-1"></a>show sync-status
+</code></pre></div>
+<p>文件同步：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-153-1" name="__codelineno-153-1" href="#__codelineno-153-1"></a>file sync version
+<a id="__codelineno-153-2" name="__codelineno-153-2" href="#__codelineno-153-2"></a>file sync package
+<a id="__codelineno-153-3" name="__codelineno-153-3" href="#__codelineno-153-3"></a>file sync patch
+<a id="__codelineno-153-4" name="__codelineno-153-4" href="#__codelineno-153-4"></a>file sync cfg-startup
+</code></pre></div>
+<h4 id="4172-华为加载新板卡">4.17.2 华为加载新板卡</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-154-1" name="__codelineno-154-1" href="#__codelineno-154-1"></a>display board 0
+</code></pre></div>
+<p><img alt="display board" src="../assets/p1155.png" /></p>
+<ul>
+<li><code>Failed</code> 表示板卡离线；</li>
+<li><code>Auto find</code> 是待用状态：</li>
+</ul>
+<p><img alt="Auto find 待用" src="../assets/p1165.png" /></p>
+<p><strong>需要确认单板才能正常</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-155-1" name="__codelineno-155-1" href="#__codelineno-155-1"></a>board confirm 0
+</code></pre></div>
+<p><img alt="board confirm" src="../assets/p1168.png" /></p>
+<p>使对应的板子刷新出来，<strong>变成 <code>normal</code> 才是正常</strong>：</p>
+<p><img alt="变成 normal" src="../assets/p1171.png" /></p>
+<hr />
+<h2 id="第五章-号线系统">第五章 号线系统</h2>
+<p>号线系统是资源管理平台，用于修改 OLT 侧资源数据（PON 口 SVLAN、语音 IP 地址池等）。</p>
+<h3 id="51-修改号线-pon-口-vlansvlan">5.1 修改号线 PON 口 VLAN（SVLAN）</h3>
+<ol>
+<li>进入 UI 界面，找到"设备"一栏，选中<strong>接入设备</strong>：</li>
+</ol>
+<p><img alt="设备 → 接入设备" src="../assets/p1373.png" /></p>
+<ol>
+<li>次选 <strong>PON 局端设备（OLT）</strong>，再选择相应的查询条件（比如设备的 IP 或者名称）：</li>
+</ol>
+<p><img alt="选择 PON 局端设备（OLT）" src="../assets/p1377.png" /></p>
+<ol>
+<li>输入条件进行查询：</li>
+</ol>
+<p><img alt="输入条件查询" src="../assets/p1379.png" /></p>
+<ol>
+<li>继续点开细分选项（点击 <code>+</code>）：</li>
+</ol>
+<p><img alt="点开细分" src="../assets/p1382.png" /></p>
+<ol>
+<li>选到细分的板卡（例如 <code>2/7</code>），右键点击选项卡，选择"修改"：</li>
+</ol>
+<p><img alt="右键 → 修改" src="../assets/p1388.png" /></p>
+<ol>
+<li><strong>只针对 SVLAN 这一项进行修改</strong>，看看与其他外标是否一致；如果不一致，按要求修改：</li>
+</ol>
+<p><img alt="只改 SVLAN" src="../assets/p1392.png" /></p>
+<blockquote>
+<p>⚠️ <strong>其他选项，如果没要求千万别动！</strong></p>
+</blockquote>
+<h3 id="52-修改号线语音-ip">5.2 修改号线语音 IP</h3>
+<ol>
+<li>在"码号"里找到 <strong>IP 地址池</strong>：</li>
+</ol>
+<p><img alt="码号 → IP 地址池" src="../assets/p1395.png" /></p>
+<ol>
+<li>右键新增：</li>
+</ol>
+<p><img alt="右键新增" src="../assets/p1398.png" /></p>
+<ol>
+<li>输入对应 OLT 名称：</li>
+</ol>
+<p><img alt="输入 OLT 名称" src="../assets/p1401.png" /></p>
+<ol>
+<li>更改 IP 对应地址：</li>
+</ol>
+<p><img alt="更改 IP 地址" src="../assets/p1403.png" /></p>
+<hr />
+<h2 id="第六章-账号与网站汇总">第六章 账号与网站汇总</h2>
+<blockquote>
+<p>以下地址多为内网/专网地址，需在对应网络环境下访问。</p>
+</blockquote>
+<h3 id="61-宽带用户变更明细">6.1 宽带用户变更明细</h3>
+<p><strong>平台路径</strong>：湖北联通网络数据应用平台 → 承载网 → 日报 → 宽带用户变更明细。</p>
+<p>数据按<strong>地市、日期</strong>先查询，再输出 Excel。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-156-1" name="__codelineno-156-1" href="#__codelineno-156-1"></a>http://10.19.100.122:8296/WebReport/ReportServer?op=fs
+</code></pre></div>
+<p>账号：<code>hb-penglf</code> / <code>&lt;密码已隐藏&gt;</code></p>
+<p><img alt="宽带用户变更明细（1）" src="../assets/p1185.png" />
+<img alt="宽带用户变更明细（2）" src="../assets/p1186.png" />
+<img alt="宽带用户变更明细（3）" src="../assets/p1187.png" /></p>
+<h3 id="62-测速平台需内网">6.2 测速平台（需内网）</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-157-1" name="__codelineno-157-1" href="#__codelineno-157-1"></a>http://cesu.hb.cnc.cn:8090/sts/index/toLoginPage.action
+</code></pre></div>
+<p><img alt="测速平台登录" src="../assets/p1192.png" /></p>
+<p><strong>WIFI 测速</strong>（另一个入口）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-158-1" name="__codelineno-158-1" href="#__codelineno-158-1"></a>http://cesu.hb.cnc.cn:8090/sts/
+</code></pre></div>
+<p>账号：<code>yc_kdcs</code> / <code>&lt;密码已隐藏&gt;</code></p>
+<h3 id="63-公众平台需-ie8--360-浏览器">6.3 公众平台（需 IE8 / 360 浏览器）</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-159-1" name="__codelineno-159-1" href="#__codelineno-159-1"></a>http://58.19.117.122:7003/IOMPROJ/
+<a id="__codelineno-159-2" name="__codelineno-159-2" href="#__codelineno-159-2"></a>http://10.19.100.172:8080/IOMPROJ/logon.jsp
+</code></pre></div>
+<p>公众支撑系统账号：<code>YC-ZWDD07</code> / <code>&lt;密码已隐藏&gt;</code></p>
+<h3 id="64-号线系统">6.4 号线系统</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a>http://10.19.100.113:10010/resource/home
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>用户名</th>
+<th>密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Yang.zhijiang</code></td>
+<td><code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td><code>Hu.lingyun</code></td>
+<td><code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="65-账号速查表">6.5 账号速查表</h3>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>地址</th>
+<th>账号 / 密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>宽带用户变更明细</td>
+<td><code>http://10.19.100.122:8296/WebReport/ReportServer?op=fs</code></td>
+<td><code>hb-penglf</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>测速平台</td>
+<td><code>http://cesu.hb.cnc.cn:8090/sts/index/toLoginPage.action</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>WIFI 测速</td>
+<td><code>http://cesu.hb.cnc.cn:8090/sts/</code></td>
+<td><code>yc_kdcs</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>公众平台</td>
+<td><code>http://58.19.117.122:7003/IOMPROJ/</code><br><code>http://10.19.100.172:8080/IOMPROJ/logon.jsp</code></td>
+<td><code>YC-ZWDD07</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>号线系统</td>
+<td><code>http://10.19.100.113:10010/resource/home</code></td>
+<td><code>Yang.zhijiang</code> / <code>&lt;密码已隐藏&gt;</code><br><code>Hu.lingyun</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>IP 备案</td>
+<td><code>https://beian.wo.cn:8081/filingweb/filing/login/reLogin</code></td>
+<td><code>ycpenglinfan</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>中兴 OLT</td>
+<td>Telnet</td>
+<td><code>zte</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>华为 OLT</td>
+<td>Telnet</td>
+<td><code>huawei</code> / <code>&lt;密码已隐藏&gt;</code></td>
+</tr>
+<tr>
+<td>网管对象（中兴）</td>
+<td>—</td>
+<td>读写团体名 <code>YCLT_public</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="第七章-python-与-pandas-速查">第七章 Python 与 Pandas 速查</h2>
+<blockquote>
+<p>Pandas 是利用 Python 进行数据分析、表格制作的一个工具。以下按"读文件 → 查看 → 操作 → 导出"的顺序整理。</p>
+</blockquote>
+<h3 id="71-读文件">7.1 读文件</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a><span class="c1"># 建立 ExcelFile 对象后可按 sheet 名读取</span>
+<a id="__codelineno-161-2" name="__codelineno-161-2" href="#__codelineno-161-2"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">cdir1</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file1</span><span class="p">)</span>
+<a id="__codelineno-161-3" name="__codelineno-161-3" href="#__codelineno-161-3"></a>
+<a id="__codelineno-161-4" name="__codelineno-161-4" href="#__codelineno-161-4"></a><span class="c1"># 读第一个 sheet</span>
+<a id="__codelineno-161-5" name="__codelineno-161-5" href="#__codelineno-161-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">cdirx</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file</span><span class="p">)</span>
+<a id="__codelineno-161-6" name="__codelineno-161-6" href="#__codelineno-161-6"></a>
+<a id="__codelineno-161-7" name="__codelineno-161-7" href="#__codelineno-161-7"></a><span class="c1"># 读指定名称的 sheet</span>
+<a id="__codelineno-161-8" name="__codelineno-161-8" href="#__codelineno-161-8"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">cdir1</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file1</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;融合明细&#39;</span><span class="p">)</span>
+<a id="__codelineno-161-9" name="__codelineno-161-9" href="#__codelineno-161-9"></a>
+<a id="__codelineno-161-10" name="__codelineno-161-10" href="#__codelineno-161-10"></a><span class="c1"># 跳过前 x 行再读</span>
+<a id="__codelineno-161-11" name="__codelineno-161-11" href="#__codelineno-161-11"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xxxx</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-161-12" name="__codelineno-161-12" href="#__codelineno-161-12"></a>
+<a id="__codelineno-161-13" name="__codelineno-161-13" href="#__codelineno-161-13"></a><span class="c1"># 读 csv（中文用 gbk）</span>
+<a id="__codelineno-161-14" name="__codelineno-161-14" href="#__codelineno-161-14"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cdir1</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">file1</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>批量读多个表并合并成一个表</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">cdir1</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\*.xls&#39;</span><span class="p">):</span>
+<a id="__codelineno-162-2" name="__codelineno-162-2" href="#__codelineno-162-2"></a>    <span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-162-3" name="__codelineno-162-3" href="#__codelineno-162-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;导入文件名:&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;用户数:&#39;</span><span class="p">,</span> <span class="n">df_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-162-4" name="__codelineno-162-4" href="#__codelineno-162-4"></a>    <span class="n">df_</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filename</span>
+<a id="__codelineno-162-5" name="__codelineno-162-5" href="#__codelineno-162-5"></a>    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_</span><span class="p">)</span>
+<a id="__codelineno-162-6" name="__codelineno-162-6" href="#__codelineno-162-6"></a>    <span class="k">del</span> <span class="n">df_</span>
+<a id="__codelineno-162-7" name="__codelineno-162-7" href="#__codelineno-162-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>          <span class="c1"># 组合多个表格形成测速平台全量表</span>
+</code></pre></div>
+<h3 id="72-查看表格相关信息">7.2 查看表格相关信息</h3>
+<p>拿到一张表先别急着处理，用这几条把规模、列名、取值分布看一眼，才知道后面该怎么清洗：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>df1.info()</code></td>
+<td>查看表格相关信息（列类型、非空数）</td>
+</tr>
+<tr>
+<td><code>df.head()</code></td>
+<td>查看前几行</td>
+</tr>
+<tr>
+<td><code>df.tail()</code></td>
+<td>查看后几行</td>
+</tr>
+<tr>
+<td><code>df.shape</code></td>
+<td>查看表格有几行几列</td>
+</tr>
+<tr>
+<td><code>df.columns</code></td>
+<td>查看列名/列数据类型</td>
+</tr>
+<tr>
+<td><code>df['xxx'].unique()</code></td>
+<td>查看列名为 xxx 的元素种类</td>
+</tr>
+<tr>
+<td><code>df['x'].value_counts()</code></td>
+<td>查看列元素数量（频次）</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="df1.info()" src="../assets/p1248.png" />
+<img alt="unique()" src="../assets/p1258.png" /></p>
+<h3 id="73-表格操作指令">7.3 表格操作指令</h3>
+<p><strong>删除空值</strong>（对整行含 nan 的删除，生成新表，原表不变）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-163-1" name="__codelineno-163-1" href="#__codelineno-163-1"></a><span class="n">df01</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>去重</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-164-1" name="__codelineno-164-1" href="#__codelineno-164-1"></a><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-164-2" name="__codelineno-164-2" href="#__codelineno-164-2"></a><span class="c1"># keep 为保留项；inplace=True 表示在原表上修改</span>
+</code></pre></div>
+<p><strong>取表中几列组成新表</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-165-1" name="__codelineno-165-1" href="#__codelineno-165-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;xxx&#39;</span><span class="p">,</span> <span class="s1">&#39;xxx&#39;</span><span class="p">,</span> <span class="s1">&#39;xxxx&#39;</span><span class="p">]]</span>
+</code></pre></div>
+<p><strong>筛选特定条件的值</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-166-1" name="__codelineno-166-1" href="#__codelineno-166-1"></a><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;xxxx&#39;</span><span class="p">)]</span>
+<a id="__codelineno-166-2" name="__codelineno-166-2" href="#__codelineno-166-2"></a>
+<a id="__codelineno-166-3" name="__codelineno-166-3" href="#__codelineno-166-3"></a><span class="c1"># 例子：筛选接入方式为 FTTH 且业务号码不为某值的行</span>
+<a id="__codelineno-166-4" name="__codelineno-166-4" href="#__codelineno-166-4"></a><span class="n">df3</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;接入方式&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;FTTH&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;071704433964&#39;</span><span class="p">)]</span>
+</code></pre></div>
+<p><strong>改列名</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-167-1" name="__codelineno-167-1" href="#__codelineno-167-1"></a><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xxxxx&#39;</span><span class="p">]</span>        <span class="c1"># 注意：新列名列表长度要与原列数一致</span>
+</code></pre></div>
+<p><strong>过滤特定字符串</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-168-1" name="__codelineno-168-1" href="#__codelineno-168-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;xxxx&quot;</span><span class="p">)]</span>
+<a id="__codelineno-168-2" name="__codelineno-168-2" href="#__codelineno-168-2"></a>
+<a id="__codelineno-168-3" name="__codelineno-168-3" href="#__codelineno-168-3"></a><span class="c1"># 例子：只保留产品名含 300 / 500 / 1000 的行（即过滤掉其他）</span>
+<a id="__codelineno-168-4" name="__codelineno-168-4" href="#__codelineno-168-4"></a><span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;PRODUCT_NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;300&quot;</span><span class="p">))</span> <span class="o">|</span>
+<a id="__codelineno-168-5" name="__codelineno-168-5" href="#__codelineno-168-5"></a>          <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;PRODUCT_NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;500&quot;</span><span class="p">))</span> <span class="o">|</span>
+<a id="__codelineno-168-6" name="__codelineno-168-6" href="#__codelineno-168-6"></a>          <span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;PRODUCT_NAME&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;1000&quot;</span><span class="p">))]</span>
+</code></pre></div>
+<p><strong>列数据添加字符串前缀</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-169-1" name="__codelineno-169-1" href="#__codelineno-169-1"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;xxxx&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>      <span class="c1"># astype(str) 使列变为字符串</span>
+<a id="__codelineno-169-2" name="__codelineno-169-2" href="#__codelineno-169-2"></a>
+<a id="__codelineno-169-3" name="__codelineno-169-3" href="#__codelineno-169-3"></a><span class="c1"># 例子：业务号码统一加前导 0</span>
+<a id="__codelineno-169-4" name="__codelineno-169-4" href="#__codelineno-169-4"></a><span class="n">df01</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">df01</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>找出唯一值</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-170-1" name="__codelineno-170-1" href="#__codelineno-170-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>          <span class="c1"># 取 df 中 x 的数值成为一个数组</span>
+</code></pre></div>
+<p><img alt="unique 取数组" src="../assets/p1313.png" /></p>
+<p><strong>判断是否在另一个集合中存在（isin）</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-171-1" name="__codelineno-171-1" href="#__codelineno-171-1"></a><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">xxxx</span><span class="p">)]</span>      <span class="c1"># df 中 x 列的数据是否在 xxxx 中存在</span>
+<a id="__codelineno-171-2" name="__codelineno-171-2" href="#__codelineno-171-2"></a>
+<a id="__codelineno-171-3" name="__codelineno-171-3" href="#__codelineno-171-3"></a><span class="c1"># 例子：用 df01 的业务号码做白名单，筛出 df02 中命中的行</span>
+<a id="__codelineno-171-4" name="__codelineno-171-4" href="#__codelineno-171-4"></a><span class="n">value1</span> <span class="o">=</span> <span class="n">df01</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<a id="__codelineno-171-5" name="__codelineno-171-5" href="#__codelineno-171-5"></a><span class="n">df3</span> <span class="o">=</span> <span class="n">df02</span><span class="p">[</span><span class="n">df02</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">value1</span><span class="p">)]</span>
+</code></pre></div>
+<p><strong>拼接表格</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-172-1" name="__codelineno-172-1" href="#__codelineno-172-1"></a><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df左边</span><span class="p">,</span> <span class="n">df右边</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;xxxx&#39;</span><span class="p">)</span>
+<a id="__codelineno-172-2" name="__codelineno-172-2" href="#__codelineno-172-2"></a>
+<a id="__codelineno-172-3" name="__codelineno-172-3" href="#__codelineno-172-3"></a><span class="c1"># 例子：以左边表为主，按 OLT地址 列拼接</span>
+<a id="__codelineno-172-4" name="__codelineno-172-4" href="#__codelineno-172-4"></a><span class="n">df42</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df41</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;OLT地址&#39;</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><code>how='left'</code> 以左表为准。</p>
+</blockquote>
+<p><strong>替换字符串</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-173-1" name="__codelineno-173-1" href="#__codelineno-173-1"></a><span class="n">df01</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df01</span><span class="p">[</span><span class="s1">&#39;业务号码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0717&#39;</span><span class="p">,</span> <span class="s1">&#39;717&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>引用数据（VLOOKUP 效果）</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-174-1" name="__codelineno-174-1" href="#__codelineno-174-1"></a><span class="c1"># 假设 df1 和 df2 是两个表，通过某一列将 df2 的数据引用到 df1 中</span>
+<a id="__codelineno-174-2" name="__codelineno-174-2" href="#__codelineno-174-2"></a><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;新列名&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="s1">&#39;共同列名&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;共同列名&#39;</span><span class="p">)[</span><span class="s1">&#39;目标列名&#39;</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="74-常用代码">7.4 常用代码</h3>
+<p><strong>导出文件</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-175-1" name="__codelineno-175-1" href="#__codelineno-175-1"></a><span class="n">daynow</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<a id="__codelineno-175-2" name="__codelineno-175-2" href="#__codelineno-175-2"></a><span class="n">ymd1</span> <span class="o">=</span> <span class="n">daynow</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">%H%M%S&#39;</span><span class="p">)</span>
+<a id="__codelineno-175-3" name="__codelineno-175-3" href="#__codelineno-175-3"></a><span class="n">filew</span> <span class="o">=</span> <span class="s2">&quot;xxxx&quot;</span> <span class="o">+</span> <span class="n">ymd1</span> <span class="o">+</span> <span class="s2">&quot;.xlsx&quot;</span>          <span class="c1"># xxxx 为导出表名，ymd1 为时间标签</span>
+<a id="__codelineno-175-4" name="__codelineno-175-4" href="#__codelineno-175-4"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">导出结果文件名称</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">filew</span><span class="p">)</span>
+<a id="__codelineno-175-5" name="__codelineno-175-5" href="#__codelineno-175-5"></a><span class="n">dfxxxx</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">filew</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>      <span class="c1"># dfxxxx 为要导出的 DataFrame</span>
+</code></pre></div>
+<p><img alt="导出代码" src="../assets/p1349.png" /></p>
+<p><strong>读文件前的标准导入头与设置</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-176-1" name="__codelineno-176-1" href="#__codelineno-176-1"></a><span class="o">%%</span><span class="n">time</span>
+<a id="__codelineno-176-2" name="__codelineno-176-2" href="#__codelineno-176-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-176-3" name="__codelineno-176-3" href="#__codelineno-176-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-176-4" name="__codelineno-176-4" href="#__codelineno-176-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<a id="__codelineno-176-5" name="__codelineno-176-5" href="#__codelineno-176-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-176-6" name="__codelineno-176-6" href="#__codelineno-176-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-176-7" name="__codelineno-176-7" href="#__codelineno-176-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<a id="__codelineno-176-8" name="__codelineno-176-8" href="#__codelineno-176-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">simplefilter</span>
+<a id="__codelineno-176-9" name="__codelineno-176-9" href="#__codelineno-176-9"></a><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<a id="__codelineno-176-10" name="__codelineno-176-10" href="#__codelineno-176-10"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-176-11" name="__codelineno-176-11" href="#__codelineno-176-11"></a><span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+<p><strong>常用变量定义</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-177-1" name="__codelineno-177-1" href="#__codelineno-177-1"></a><span class="n">cdir1</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;xxx/xxx/xxx/&quot;</span>      <span class="c1"># 定义目录</span>
+<a id="__codelineno-177-2" name="__codelineno-177-2" href="#__codelineno-177-2"></a><span class="n">file1</span> <span class="o">=</span> <span class="s2">&quot;xxxx&quot;</span>               <span class="c1"># 定义文件</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-178-1" name="__codelineno-178-1" href="#__codelineno-178-1"></a>pwd                          # 看程序当前目录
+</code></pre></div>
+<p><img alt="pwd" src="../assets/p1368.png" /></p>
+<hr />
+<h2 id="第八章-ip-备案">第八章 IP 备案</h2>
+<h3 id="81-系统与要求">8.1 系统与要求</h3>
+<p>中国联通网站备案管理系统：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-179-1" name="__codelineno-179-1" href="#__codelineno-179-1"></a>https://beian.wo.cn:8081/filingweb/filing/login/reLogin
+</code></pre></div>
+<ul>
+<li>用户名：<code>ycpenglinfan</code></li>
+<li>密码：<code>&lt;密码已隐藏&gt;</code></li>
+</ul>
+<blockquote>
+<p>⏰ <strong>备案要求：新分 IP 使用后 5 个工作日内必须备案。</strong></p>
+</blockquote>
+<h3 id="82-流程一单位信息录入">8.2 流程一：单位信息录入</h3>
+<p>先查询单位是否已录入，<strong>若已录入则省略该步骤</strong>。以下以 <code>122.191.251.147</code> 为例。</p>
+<ol>
+<li>IP 备案查询：</li>
+</ol>
+<p><img alt="IP 备案查询" src="../assets/p1414.png" /></p>
+<ol>
+<li>备案维护 → IP 使用单位：</li>
+</ol>
+<p><img alt="备案维护 → IP 使用单位" src="../assets/p1417.png" />
+<img alt="IP 使用单位" src="../assets/p1419.png" /></p>
+<ol>
+<li>根据钉钉开通工单里客户经理提供的客户信息表，填写录入单位信息：</li>
+</ol>
+<p><img alt="填写录入单位信息" src="../assets/p1422.png" /></p>
+<h3 id="83-流程二ip-分配查询">8.3 流程二：IP 分配查询</h3>
+<ol>
+<li>备案查询 → IP 分配情况查询 → 起始 IP 地址 → 查询：</li>
+</ol>
+<p><img alt="IP 分配情况查询" src="../assets/p1425.png" /></p>
+<ol>
+<li><code>122.191.251.147</code> 段已预留，需从预留段剔除出去：</li>
+</ol>
+<p><img alt="从预留段剔除" src="../assets/p1427.png" />
+<img alt="剔除操作" src="../assets/p1430.png" /></p>
+<ol>
+<li>剔除后，<code>122.191.251.148</code> — <code>122.191.251.255</code> 段预留备案：</li>
+</ol>
+<p><img alt="剩余段预留备案" src="../assets/p1432.png" />
+<img alt="预留备案结果" src="../assets/p1434.png" /></p>
+<ol>
+<li>对 <code>122.191.251.147</code> 分配且使用备案：</li>
+</ol>
+<p><img alt="分配且使用备案" src="../assets/p1436.png" />
+<img alt="备案步骤 1" src="../assets/p1439.png" />
+<img alt="备案步骤 2" src="../assets/p1440.png" />
+<img alt="备案步骤 3" src="../assets/p1441.png" />
+<img alt="备案完成" src="../assets/p1444.png" /></p>
+<hr />
+<h2 id="第九章-实际配置案例">第九章 实际配置案例</h2>
+<h3 id="91-案例一语音地址池加-ip-段">9.1 案例一：语音地址池加 IP 段</h3>
+<p><strong>背景</strong>：语音地址池不够用，需要在既有 BAS 上新增一段语音 IP。</p>
+<p><strong>第 1 步</strong>：<code>display current-configuration</code> 看一下全局配置：</p>
+<p><img alt="全局配置" src="../assets/p1455.png" /></p>
+<p><strong>第 2 步</strong>：去找一下没启用的最新地址池名称。本案例新增 <code>100.51.168.2-30</code> 这一段。</p>
+<p><strong>第 3 步</strong>：新加语音地址池：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-180-1" name="__codelineno-180-1" href="#__codelineno-180-1"></a>ip pool ims11 bas local
+<a id="__codelineno-180-2" name="__codelineno-180-2" href="#__codelineno-180-2"></a> vpn-instance voice
+<a id="__codelineno-180-3" name="__codelineno-180-3" href="#__codelineno-180-3"></a> gateway 100.51.168.1 255.255.255.0
+<a id="__codelineno-180-4" name="__codelineno-180-4" href="#__codelineno-180-4"></a> section 0 100.51.168.2 100.51.168.254
+<a id="__codelineno-180-5" name="__codelineno-180-5" href="#__codelineno-180-5"></a> excluded-ip-address 100.51.168.2 100.51.168.254
+</code></pre></div>
+<p><strong>第 4 步</strong>：创建/进入名叫 <code>ims</code> 的 AAA 域，把池挂上：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-181-1" name="__codelineno-181-1" href="#__codelineno-181-1"></a>aaa
+<a id="__codelineno-181-2" name="__codelineno-181-2" href="#__codelineno-181-2"></a> domain ims
+<a id="__codelineno-181-3" name="__codelineno-181-3" href="#__codelineno-181-3"></a>  ip-pool ims11
+</code></pre></div>
+<p><strong>第 5 步</strong>：批量配置静态 IPoE 用户：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-182-1" name="__codelineno-182-1" href="#__codelineno-182-1"></a>static-user 100.51.168.2 100.51.168.30 gateway 100.51.168.1 \
+<a id="__codelineno-182-2" name="__codelineno-182-2" href="#__codelineno-182-2"></a>  vpn-instance voice interface Eth-Trunk5.900 vlan 50 qinq 900 domain-name ims detect
+</code></pre></div>
+<h3 id="92-案例二删除-c600-系列的-lacp-聚合组员">9.2 案例二：删除 C600 系列的 LACP 聚合组员</h3>
+<p><strong>去除聚合组</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-183-1" name="__codelineno-183-1" href="#__codelineno-183-1"></a>lacp
+<a id="__codelineno-183-2" name="__codelineno-183-2" href="#__codelineno-183-2"></a> interface xgei-1/5/1
+<a id="__codelineno-183-3" name="__codelineno-183-3" href="#__codelineno-183-3"></a>  no smartgroup
+</code></pre></div>
+<p><strong>进入具体上联口删除具体 vlan</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-184-1" name="__codelineno-184-1" href="#__codelineno-184-1"></a>interface xgei-1/5/1
+<a id="__codelineno-184-2" name="__codelineno-184-2" href="#__codelineno-184-2"></a> no switchport vlan 57,125,233-234
+<a id="__codelineno-184-3" name="__codelineno-184-3" href="#__codelineno-184-3"></a> no switchport vlan 3019,3601,3627
+<a id="__codelineno-184-4" name="__codelineno-184-4" href="#__codelineno-184-4"></a> no switchport vlan 3647
+</code></pre></div>
+<h3 id="93-案例三改-c300-的组播">9.3 案例三：改 C300 的组播</h3>
+<p>先看现状：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-185-1" name="__codelineno-185-1" href="#__codelineno-185-1"></a>show igmp mvlan 3601
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-186-1" name="__codelineno-186-1" href="#__codelineno-186-1"></a>-------------------------------------------------------------------------------
+<a id="__codelineno-186-2" name="__codelineno-186-2" href="#__codelineno-186-2"></a>Source Port        HostCompatibleMode   HostConfigMode   V1TimeOut   V2TimeOut
+<a id="__codelineno-186-3" name="__codelineno-186-3" href="#__codelineno-186-3"></a>-------------------------------------------------------------------------------
+<a id="__codelineno-186-4" name="__codelineno-186-4" href="#__codelineno-186-4"></a>sg1                   v3                   auto              0           0
+</code></pre></div>
+<p>删除旧的 source-port（原绑定在 <code>smartgroup1</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-187-1" name="__codelineno-187-1" href="#__codelineno-187-1"></a>no igmp mvlan 3601 source-port smartgroup1
+</code></pre></div>
+<p>绑定新的口（改成 <code>xgei_1/3/2</code>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-188-1" name="__codelineno-188-1" href="#__codelineno-188-1"></a>igmp mvlan 3601 source-port xgei_1/3/2
+</code></pre></div>
+<p>验证：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-189-1" name="__codelineno-189-1" href="#__codelineno-189-1"></a>show mac vlan 3601
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-190-1" name="__codelineno-190-1" href="#__codelineno-190-1"></a>Total mac address : 1
+<a id="__codelineno-190-2" name="__codelineno-190-2" href="#__codelineno-190-2"></a>
+<a id="__codelineno-190-3" name="__codelineno-190-3" href="#__codelineno-190-3"></a>Mac address      Vlan  Type      Port                     Vc
+<a id="__codelineno-190-4" name="__codelineno-190-4" href="#__codelineno-190-4"></a>-------------------------------------------------------------------------------
+<a id="__codelineno-190-5" name="__codelineno-190-5" href="#__codelineno-190-5"></a>b885.7be6.b562   3601  Dynamic   xgei_1/3/2
+</code></pre></div>
+<h3 id="94-案例四看华为-olt-的-onu-光衰">9.4 案例四：看华为 OLT 的 ONU 光衰</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-191-1" name="__codelineno-191-1" href="#__codelineno-191-1"></a>interface gpon 0/5
+<a id="__codelineno-191-2" name="__codelineno-191-2" href="#__codelineno-191-2"></a>display ont optical-info 0 5
+</code></pre></div>
+<p><img alt="单 ONU 光衰" src="../assets/p1517.png" /></p>
+<h3 id="95-宽带拉流数据制作完整配置">9.5 宽带拉流数据制作（完整配置）</h3>
+<p>以 <code>HBYC-YDtoubishequ-ZTE-C600-O1</code> 为例。</p>
+<p><strong>1）配置聚合口</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-192-1" name="__codelineno-192-1" href="#__codelineno-192-1"></a>interface Eth-Trunk6
+<a id="__codelineno-192-2" name="__codelineno-192-2" href="#__codelineno-192-2"></a> description RELAY,to_HBYC-YDtoubishequ-ZTE-C600-O1_SM1,20G:1,YC,W-64N0057IP
+<a id="__codelineno-192-3" name="__codelineno-192-3" href="#__codelineno-192-3"></a> mode lacp-static
+<a id="__codelineno-192-4" name="__codelineno-192-4" href="#__codelineno-192-4"></a> nas logic-port eth-Trunk 4/1/3
+</code></pre></div>
+<p><img alt="聚合口配置" src="../assets/p1531.png" /></p>
+<p><strong>2）配置 RMS 认证（<code>.48</code> 子接口）</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-193-1" name="__codelineno-193-1" href="#__codelineno-193-1"></a>interface Eth-Trunk6.48
+<a id="__codelineno-193-2" name="__codelineno-193-2" href="#__codelineno-193-2"></a> description SELF,RMS_HBYC-YDtoubishequ-ZTE-C600-O1_SM1,20G:1
+<a id="__codelineno-193-3" name="__codelineno-193-3" href="#__codelineno-193-3"></a> user-vlan 48 qinq 999
+<a id="__codelineno-193-4" name="__codelineno-193-4" href="#__codelineno-193-4"></a> bas
+<a id="__codelineno-193-5" name="__codelineno-193-5" href="#__codelineno-193-5"></a>  #
+<a id="__codelineno-193-6" name="__codelineno-193-6" href="#__codelineno-193-6"></a>  access-type layer2-subscriber default-domain pre-authentication rms-admin
+<a id="__codelineno-193-7" name="__codelineno-193-7" href="#__codelineno-193-7"></a>  authentication-method ppp web
+<a id="__codelineno-193-8" name="__codelineno-193-8" href="#__codelineno-193-8"></a>  vpn-instance rms-admin
+<a id="__codelineno-193-9" name="__codelineno-193-9" href="#__codelineno-193-9"></a>  #
+</code></pre></div>
+<p><strong>3）配置 PPPoE（<code>.100</code> 子接口）</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-194-1" name="__codelineno-194-1" href="#__codelineno-194-1"></a>interface Eth-Trunk6.100
+<a id="__codelineno-194-2" name="__codelineno-194-2" href="#__codelineno-194-2"></a> description SELF,PPPOE_HBYC-YDtoubishequ-ZTE-C600-O1_SM1,20G:1
+<a id="__codelineno-194-3" name="__codelineno-194-3" href="#__codelineno-194-3"></a> ipv6 enable
+<a id="__codelineno-194-4" name="__codelineno-194-4" href="#__codelineno-194-4"></a> ipv6 address auto link-local
+<a id="__codelineno-194-5" name="__codelineno-194-5" href="#__codelineno-194-5"></a> user-vlan 1000 2000 qinq 999
+<a id="__codelineno-194-6" name="__codelineno-194-6" href="#__codelineno-194-6"></a> bas
+<a id="__codelineno-194-7" name="__codelineno-194-7" href="#__codelineno-194-7"></a>  #
+<a id="__codelineno-194-8" name="__codelineno-194-8" href="#__codelineno-194-8"></a>  access-type layer2-subscriber default-domain authentication yidu-gongwang
+<a id="__codelineno-194-9" name="__codelineno-194-9" href="#__codelineno-194-9"></a>  client-option82 basinfo-insert cn-telecom
+<a id="__codelineno-194-10" name="__codelineno-194-10" href="#__codelineno-194-10"></a>  #
+</code></pre></div>
+<hr />
+<h2 id="附录常用命令速查">附录：常用命令速查</h2>
+<p>下面按设备类型把常用命令集中列出来，排障时直接查表，不用翻正文。</p>
+<h3 id="bas华为-ne-系列">BAS（华为 NE 系列）</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查路由</td>
+<td><code>display ip routing-table x.x.x.x</code></td>
+</tr>
+<tr>
+<td>查接口描述</td>
+<td><code>display interface description</code></td>
+</tr>
+<tr>
+<td>查子接口配置</td>
+<td><code>display current-configuration interface Eth-Trunk x.x</code></td>
+</tr>
+<tr>
+<td>按 IP 搜配置</td>
+<td><code>display current-configuration \| include x.x.x.x</code></td>
+</tr>
+<tr>
+<td>查在线用户</td>
+<td><code>display access-user</code></td>
+</tr>
+<tr>
+<td>按 MAC 查用户</td>
+<td><code>display access-user mac-address xxxx-xxxx-xxxx</code></td>
+</tr>
+<tr>
+<td>查端口下用户</td>
+<td><code>display access-user interface Eth-Trunk x.x pevlan x</code></td>
+</tr>
+<tr>
+<td>踢在线用户</td>
+<td><code>cut access-user ip-address x.x.x.x</code></td>
+</tr>
+<tr>
+<td>接口简报</td>
+<td><code>display interface brief</code></td>
+</tr>
+<tr>
+<td>进管理模式</td>
+<td><code>system</code>（提示符 <code>&lt;&gt;</code> → <code>[]</code>）</td>
+</tr>
+<tr>
+<td>提交</td>
+<td><code>commit</code></td>
+</tr>
+<tr>
+<td>保存</td>
+<td><code>save</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="中兴-oltc300--c600--c620--c320">中兴 OLT（C300 / C600 / C620 / C320）</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONU 状态</td>
+<td><code>show gpon onu state gpon-olt_x/x/x</code></td>
+</tr>
+<tr>
+<td>ONU 配置</td>
+<td><code>show running-config-interface gpon_onu-x/x/x:x</code></td>
+</tr>
+<tr>
+<td>端口已注册设备</td>
+<td><code>show running-config-interface gpon_olt-x/x/x</code></td>
+</tr>
+<tr>
+<td>按 SN/LOID 查</td>
+<td><code>show gpon onu by sn</code></td>
+</tr>
+<tr>
+<td>未配置 ONU</td>
+<td><code>show gpon onu uncfg</code></td>
+</tr>
+<tr>
+<td>ONU 管理</td>
+<td><code>pon-onu-mng gpon-onu_x/x/x:x</code></td>
+</tr>
+<tr>
+<td>LLDP</td>
+<td><code>show lldp entry interface xgei-x/x/x</code> / <code>show lldp internal</code></td>
+</tr>
+<tr>
+<td>查 MAC</td>
+<td><code>show mac vlan xx</code></td>
+</tr>
+<tr>
+<td>光衰（C300）</td>
+<td><code>show interface optical-module-info gei_x/x/x</code></td>
+</tr>
+<tr>
+<td>光衰（C600）</td>
+<td><code>show optical-module-info xgei-x/x/x</code></td>
+</tr>
+<tr>
+<td>清 MAC</td>
+<td><code>mac delete all</code></td>
+</tr>
+<tr>
+<td>LACP 检查</td>
+<td><code>show lacp internal</code></td>
+</tr>
+<tr>
+<td>PPOE 代理</td>
+<td><code>show pppoe-intermediate-agent vlan all</code></td>
+</tr>
+<tr>
+<td>DHCP 代理</td>
+<td><code>show dhcpv4-l2-relay-agent vlan all</code></td>
+</tr>
+<tr>
+<td>组播</td>
+<td><code>show igmp mvlan 3601</code></td>
+</tr>
+<tr>
+<td>板卡</td>
+<td><code>show subcard</code></td>
+</tr>
+<tr>
+<td>同步状态</td>
+<td><code>show sync-status</code></td>
+</tr>
+<tr>
+<td>文件同步</td>
+<td><code>file sync version/package/patch/cfg-startup</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="华为-oltma5680t--ma5800">华为 OLT（MA5680T / MA5800）</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>端口下 ONU</td>
+<td><code>display current-configuration port 0/3/4</code></td>
+</tr>
+<tr>
+<td>ONU 配置</td>
+<td><code>display current-configuration ont 0/2/1 1</code></td>
+</tr>
+<tr>
+<td>未注册 ONU</td>
+<td><code>display ont autofind all</code></td>
+</tr>
+<tr>
+<td>按 LOID 查</td>
+<td><code>display ont info by-loid xxx</code></td>
+</tr>
+<tr>
+<td>查 MAC</td>
+<td><code>display mac-address vlan xxx</code></td>
+</tr>
+<tr>
+<td>光衰（板卡）</td>
+<td><code>display port ddm-info x</code></td>
+</tr>
+<tr>
+<td>光衰（ONU）</td>
+<td><code>display ont optical-info 0 5</code></td>
+</tr>
+<tr>
+<td>端口错包</td>
+<td><code>display port statistics 0</code></td>
+</tr>
+<tr>
+<td>链路聚合</td>
+<td><code>display link-aggregation all</code></td>
+</tr>
+<tr>
+<td>板卡状态</td>
+<td><code>display board 0</code></td>
+</tr>
+<tr>
+<td>确认单板</td>
+<td><code>board confirm 0</code></td>
+</tr>
+<tr>
+<td>组播</td>
+<td><code>igmp mode off/proxy</code>、<code>igmp uplink-port 0/3/1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="idcce16808中兴-9908">IDC（CE16808、中兴 9908）</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>端口配置</td>
+<td><code>display current-configuration interface xxx</code></td>
+</tr>
+<tr>
+<td>vlanif 配置</td>
+<td><code>display current-configuration interface vlanif x</code></td>
+</tr>
+<tr>
+<td>接口状态</td>
+<td><code>show interface xgei-0/1/0/31</code></td>
+</tr>
+<tr>
+<td>isis 邻居</td>
+<td><code>display isis peer</code> / 中兴 <code>show isis ad</code></td>
+</tr>
+<tr>
+<td>路由绑定</td>
+<td><code>ip route-static &lt;起&gt; &lt;止&gt; vlanif x</code></td>
+</tr>
+<tr>
+<td>IPv4 出口</td>
+<td><code>ip ip-prefix YC-IDC-IPV4 permit 122.191.114.64 26</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年11月14日 15:33:26 CST">2026年11月14日 15:33:26</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年11月14日 15:33:26 CST">2026年11月14日 15:33:26</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "navigation.tabs", "toc.follow", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
