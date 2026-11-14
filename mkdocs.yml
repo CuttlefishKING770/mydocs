@@ -38,6 +38,7 @@ theme:
 # 格式为 -> 显示在网页上的中文名 : docs文件夹里真实的文件名
 nav:
   - 首页: index.md                 # 对应 docs/index.md
+  - 承载网/OLT维护笔记: olt_notes.md
   - Python OCR相关学习: python_study.md
   - Markdown格式: markdown_study.md
   - MkDocs学习: mkdocs_study.md    # 哪怕文件名拼错了(makdoce)，这里改对就行
@@ -62,6 +63,12 @@ plugins:
 # 5. Markdown 语法增强
 # ==========================================
 markdown_extensions:
+  # 中文标题锚点：默认 slugify 会把中文全部丢掉（"第一章 BAS" 只剩 "bas"），
+  # 换成 pymdownx 的 slugify 才能保留中文，笔记里的目录跳转才不会 404。
+  - toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - admonition
   - pymdownx.details
   - pymdownx.tilde
